@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 const PostCard = ({ post }) => {
   const {
     authorImage,
@@ -10,10 +12,21 @@ const PostCard = ({ post }) => {
     downVote,
     postTime,
     commentCount,
+    _id,
   } = post;
+  const navigate = useNavigate();
+
+  // handle onclick
+
+  const handleClick = () => {
+    console.log({ postTitle, _id });
+    navigate(`/posts/${_id}`);
+  };
   return (
     <div>
-      <div className=' p-6 mx-auto space-y-12 border rounded-lg'>
+      <div
+        onClick={handleClick}
+        className=' p-6 mx-auto space-y-12 border rounded-lg'>
         <article className='space-y-8  '>
           <div className='space-y-6'>
             {/* post title */}

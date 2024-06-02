@@ -5,6 +5,7 @@ import Error from "../Components/Error/Error";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import Membership from "../Pages/Register/Membership/Membership";
+import PostDetails from "../Pages/PostDetails/PostDetails";
 
 export const router = createBrowserRouter([
   {
@@ -15,6 +16,20 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+      },
+      {
+        path: "/posts/:id",
+        element: <PostDetails></PostDetails>,
+        loader: async ({ params }) => {
+          const response = await fetch(
+            `http://localhost:5000/posts/${params.id}`
+          );
+          if (!response.ok) {
+            throw new Error("Failed to fetch post");
+          }
+          const post = await response.json();
+          return { post }; // Make sure it returns an object with a `post` key
+        },
       },
       {
         path: "/membership",

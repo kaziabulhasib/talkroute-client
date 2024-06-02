@@ -1,12 +1,34 @@
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
+// import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Login = () => {
-  const { signInWithGoogle } = useAuth();
+  // const { signInWithGoogle, signIn } = useAuth();
+  const { signInWithGoogle, signIn } = useContext(AuthContext);
 
   const navigate = useNavigate();
+
+  // login
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    // const user = { email, password };
+    // console.log(user);
+    signIn(email, password).then((result) => {
+      const user = result.user;
+      console.log(user);
+
+      toast.success("Signin Successful");
+      // navigate(from, { replace: true });
+    });
+  };
+
+  //
   const handleGoogleLogin = async () => {
     try {
       await signInWithGoogle();
@@ -25,12 +47,13 @@ const Login = () => {
           <img src='/public/logo.png' className='w-full' alt='' />
         </div>
         <div className='card shrink-0 w-1/2 shadow-2xl bg-base-100'>
-          <form className='card-body'>
+          <form onSubmit={handleLogin} className='card-body'>
             <div className='form-control'>
               <label className='label'>
                 <span className='label-text'>Email</span>
               </label>
               <input
+                name='email'
                 type='email'
                 placeholder='email'
                 className='input input-bordered'
@@ -42,6 +65,7 @@ const Login = () => {
                 <span className='label-text'>Password</span>
               </label>
               <input
+                name='password'
                 type='password'
                 placeholder='password'
                 className='input input-bordered'
@@ -58,7 +82,7 @@ const Login = () => {
             <Link
               to='/register'
               className='hover:underline hover:text-green-700'>
-              Create New Account
+              Create Account
             </Link>
           </p>
           <p className='text-xl text-center font-medium'>

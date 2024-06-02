@@ -14,19 +14,27 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-    createUser(data.email, data.password).then((result) => {
+  const onSubmit = async (data) => {
+    try {
+      console.log(data);
+
+      // Create user
+      const result = await createUser(data.email, data.password);
       const loggedUser = result.user;
       console.log(loggedUser);
-    });
 
-    updateUserProfile(data.name, data.photoURL)
-      .then(() => {
-        toast.success("user crated successfully");
-      })
-      .catch((error) => console.log(error));
-    navigate("/");
+      if (loggedUser) {
+        // Update user profile
+        await updateUserProfile(data.name, data.photoURL);
+        toast.success("User created successfully");
+        navigate("/");
+      } else {
+        throw new Error("User creation failed");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Failed to create user or update profile");
+    }
   };
 
   const handleGoogleLogin = async () => {

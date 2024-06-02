@@ -1,32 +1,34 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const NavBar = () => {
+  const { user, logOut } = useAuth();
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    logOut()
+      .then((result) => {
+        console.log(result);
+        navigate("/register");
+        toast.success("Logout Successful");
+      })
+      .catch((error) => console.log(error));
+  };
   const links = (
     <>
       <li>
-        {" "}
         <Link to='/'>Home</Link>
       </li>
       <li>
-        {" "}
-        <Link to='/'>Membership</Link>
+        <Link to='/membership'>Membership</Link>
       </li>
       <li>
-        {" "}
         <Link to='/'>Notification icon</Link>
-      </li>
-      <li>
-        {" "}
-        <Link to='/'>Join US</Link>
-      </li>
-      <li>
-        {" "}
-        <Link to='/'>profile picture</Link>
       </li>
     </>
   );
   return (
-    <div className='navbar bg-base-100'>
+    <div className='navbar bg-base-100 px-36'>
       <div className='navbar-start'>
         <div className='dropdown'>
           <div tabIndex={0} role='button' className='btn btn-ghost lg:hidden'>
@@ -59,8 +61,51 @@ const NavBar = () => {
       <div className='navbar-center hidden lg:flex'>
         <ul className='menu menu-horizontal px-1'>{links}</ul>
       </div>
+
       <div className='navbar-end'>
-        <a className='btn'>Button</a>
+        {/* <a className='btn'>Logout</a> */}
+        {user ? (
+          <>
+            <div className='dropdown dropdown-end mr-8  '>
+              <label tabIndex={0} className='btn btn-ghost btn-circle avatar'>
+                <div className=''>
+                  <img
+                    className='w-16 h-16 rounded-full border-2 bg-white border-gray-900'
+                    src={
+                      user?.photoURL ||
+                      "https://i.ibb.co/K6n8jh8/Profile-Male-PNG.png"
+                    }
+                  />
+                </div>
+              </label>
+              <ul
+                tabIndex={0}
+                className='menu menu-sm dropdown-content mt-1 z-[1] p-2 shadow rounded-box w-52 bg-gray-700 '>
+                <li>
+                  <h1 className='text-xl text-white ml-6 text-center font-bold'>
+                    {user?.displayName || "user name not found"}
+                  </h1>
+                  {/* Dashboard  */}
+                  <Link to='/dashboard' className='btn mb-2'>
+                    Dashboard
+                  </Link>
+                  {/* log out   */}
+                  <Link onClick={handleLogout} className='btn'>
+                    Log Out
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </>
+        ) : (
+          <>
+            <Link
+              to='/login'
+              className='btn btn-sm btn-primary text-slate-200 hover:text-slate-500 '>
+              Join US
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import banner5 from "../../../assets/home/01.jpg";
@@ -8,12 +9,26 @@ import banner1 from "../../../assets/home/05.png";
 import banner6 from "../../../assets/home/06.png";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 
-const Banner = () => {
+const Banner = ({ onSearch }) => {
+  const [query, setQuery] = useState("");
+
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    setQuery(value);
+    onSearch(value);
+  };
+
   return (
     <div>
       <div className='mb-4'>
         <label className='input max-w-sm input-bordered flex items-center gap-2'>
-          <input type='text' className='grow' placeholder='Search' />
+          <input
+            type='text'
+            className='grow'
+            placeholder='Search'
+            value={query}
+            onChange={handleInputChange}
+          />
           <FaMagnifyingGlass />
         </label>
       </div>

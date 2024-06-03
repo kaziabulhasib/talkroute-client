@@ -15,6 +15,21 @@ const PostCard = ({ post }) => {
     _id,
   } = post;
   const navigate = useNavigate();
+  // date format
+  const formatPostTime = (datetimeStr) => {
+    const date = new Date(datetimeStr);
+    const options = {
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    };
+
+    const formattedDate = date.toLocaleString("en-US", options);
+
+    return formattedDate.replace(",", "");
+  };
 
   // handle onclick
 
@@ -26,7 +41,7 @@ const PostCard = ({ post }) => {
     <div>
       <div
         onClick={handleClick}
-        className=' p-6 mx-auto space-y-12 border rounded-lg'>
+        className=' p-6 mx-auto space-y-12 border rounded-lg hover:cursor-pointer'>
         <article className='space-y-8  '>
           <div className='space-y-6'>
             {/* post title */}
@@ -42,11 +57,11 @@ const PostCard = ({ post }) => {
                   className='w-12 h-12 border rounded-full  '
                 />
                 {/* time */}
-                <p className='text-sm'> • {postTime}</p>
+                <p className='text-sm'> • {formatPostTime(postTime)}</p>
               </div>
               {/* votes & comments count */}
               <p className='flex-shrink-0 mt-3 text-sm md:mt-0'>
-                {commentCount} comments • {upVote + downVote} votes
+                • {commentCount} comments • {upVote + downVote} votes
               </p>
             </div>
           </div>

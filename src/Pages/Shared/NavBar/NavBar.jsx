@@ -25,6 +25,9 @@ const NavBar = () => {
       <li>
         <Link to='/'>Notification icon</Link>
       </li>
+      <li>
+        <Link to='/addpost'>Add Post</Link>
+      </li>
     </>
   );
   return (

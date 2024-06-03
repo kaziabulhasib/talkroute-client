@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
+import { Helmet } from "react-helmet-async";
 
 const Register = () => {
   const { signInWithGoogle, createUser, updateUserProfile } = useAuth();
@@ -50,6 +51,9 @@ const Register = () => {
   };
   return (
     <div>
+      <Helmet>
+        <title>TalkRoute | Register</title>
+      </Helmet>
       <div className='hero min-h-screen border '>
         <div className='hero-content flex-col lg:flex-row gap-24  '>
           <div className='text-center lg:text-left  '>

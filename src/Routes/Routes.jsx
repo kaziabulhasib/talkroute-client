@@ -4,8 +4,9 @@ import Home from "../Pages/Home/Home/Home";
 import Error from "../Components/Error/Error";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
-import Membership from "../Pages/Register/Membership/Membership";
+import Membership from "../Pages/Membership/Membership";
 import PostDetails from "../Pages/PostDetails/PostDetails";
+import AddPost from "../Pages/AddPost/AddPost";
 
 export const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ export const router = createBrowserRouter([
       {
         path: "/membership",
         element: <Membership></Membership>,
+      },
+      {
+        path: "/addpost",
+        element: <AddPost></AddPost>,
       },
       {
         path: "/login",

@@ -14,17 +14,16 @@ const PostDetails = () => {
   const { post } = data;
   //   console.log(post);
   const {
-    authorImage,
+    _id,
+    postTitle,
     authorName,
     authorEmail,
-    postTitle,
+    authorImage,
     postDescription,
-    tags,
+    postTag,
     upVote,
     downVote,
     postTime,
-    commentCount,
-    _id,
   } = post;
 
   // date format
@@ -67,17 +66,9 @@ const PostDetails = () => {
         <div className='dark:text-gray-800'>
           <p>{postDescription}</p>
         </div>
-        <div className='pt-2 border-t'>
-          <div className='flex flex-wrap py-4 gap-2 mb-6  '>
-            {tags.map((tag, index) => (
-              <a
-                key={index}
-                rel='noopener noreferrer'
-                href='#'
-                className='px-3 py-1 text-xl rounded-sm hover:underline font-semibold '>
-                #{tag}
-              </a>
-            ))}
+        <div className='pt-2 border-t mb-6 py-4'>
+          <div>
+            <h1>#{postTag}</h1>
           </div>
           <div className='flex flex-col items-center justify-center space-y-4 md:space-y-0 md:space-x-6 md:flex-row'>
             <img

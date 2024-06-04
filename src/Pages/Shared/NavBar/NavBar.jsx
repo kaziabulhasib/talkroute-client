@@ -70,10 +70,10 @@ const NavBar = () => {
         {user ? (
           <>
             <div className='dropdown dropdown-end mr-8  '>
-              <label tabIndex={0} className='btn btn-ghost btn-circle avatar'>
+              <label tabIndex={0}>
                 <div className=''>
                   <img
-                    className='w-16 h-16 rounded-full border-2 bg-white border-gray-900'
+                    className='w-16 h-16 rounded-full border-2 bg-white p-1 border-slate-600'
                     src={
                       user?.photoURL ||
                       "https://i.ibb.co/K6n8jh8/Profile-Male-PNG.png"

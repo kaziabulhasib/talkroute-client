@@ -11,6 +11,7 @@ const AddPost = () => {
 
     const authorName = user.displayName;
     const authorEmail = user.email;
+    const authorImage = user.photoURL;
     const postTitle = form.postTitle.value;
     const postDescription = form.postDescription.value;
     const postTag = form.postTag.value;
@@ -20,13 +21,14 @@ const AddPost = () => {
     const post = {
       postTitle,
       authorName,
+      authorImage,
       authorEmail,
       postDescription,
       postTag,
       upVote,
       downVote,
     };
-    // console.log(post);
+    console.log(post);
 
     // send post data to database
     const postRes = await axiosSecure.post("/posts", post);

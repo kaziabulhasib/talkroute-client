@@ -2,17 +2,14 @@ import { useNavigate } from "react-router-dom";
 
 const PostCard = ({ post }) => {
   const {
-    authorImage,
+    _id,
+    postTitle,
     authorName,
     authorEmail,
-    postTitle,
     postDescription,
-    tags,
+    postTag,
     upVote,
     downVote,
-    postTime,
-    commentCount,
-    _id,
   } = post;
   const navigate = useNavigate();
   // date format
@@ -52,32 +49,22 @@ const PostCard = ({ post }) => {
               {/* Author image */}
               <div className='flex items-center md:space-x-2'>
                 <img
-                  src={authorImage}
+                  // src={authorImage}
                   alt=''
                   className='w-12 h-12 border rounded-full  '
                 />
                 {/* time */}
-                <p className='text-sm'> • {formatPostTime(postTime)}</p>
+                {/* <p className='text-sm'> • {formatPostTime)}</p> */}
               </div>
               {/* votes & comments count */}
               <p className='flex-shrink-0 mt-3 text-sm md:mt-0'>
-                • {commentCount} comments • {upVote + downVote} votes
+                • {0} comments • {upVote + downVote} votes
               </p>
             </div>
           </div>
         </article>
         <div>
-          <div className='flex flex-wrap py-6 gap-2 border-t border-dashed'>
-            {tags.map((tag, index) => (
-              <a
-                key={index}
-                rel='noopener noreferrer'
-                href='#'
-                className='px-3 py-1 rounded-sm hover:underline font-medium '>
-                #{tag}
-              </a>
-            ))}
-          </div>
+          <h1>#{postTag}</h1>
         </div>
       </div>
     </div>

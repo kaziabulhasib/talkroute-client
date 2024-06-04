@@ -1,9 +1,11 @@
 import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const AddPost = () => {
+  const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   //   console.log(user);
-  const handleAddPost = (e) => {
+  const handleAddPost = async (e) => {
     e.preventDefault();
     const form = e.target;
 
@@ -24,7 +26,11 @@ const AddPost = () => {
       upVote,
       downVote,
     };
-    console.log(post);
+    // console.log(post);
+
+    // send post data to database
+    const postRes = await axiosSecure.post("/posts", post);
+    console.log(postRes);
   };
   return (
     <div>

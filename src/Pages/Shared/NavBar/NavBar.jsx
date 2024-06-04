@@ -25,9 +25,9 @@ const NavBar = () => {
       <li>
         <Link to='/'>Notification icon</Link>
       </li>
-      <li>
+      {/* <li>
         <Link to='/addpost'>Add Post</Link>
-      </li>
+      </li> */}
     </>
   );
   return (
@@ -89,7 +89,7 @@ const NavBar = () => {
                     {user?.displayName || "user name not found"}
                   </h1>
                   {/* Dashboard  */}
-                  <Link to='/dashboard' className='btn mb-2'>
+                  <Link to='/dashboard/myprofile' className='btn mb-2'>
                     Dashboard
                   </Link>
                   {/* log out   */}

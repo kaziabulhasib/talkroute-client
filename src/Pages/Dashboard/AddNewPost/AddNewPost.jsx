@@ -1,7 +1,10 @@
-import useAuth from "../../hooks/useAuth";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
-const AddPost = () => {
+import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
+
+const AddNewPost = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   //   console.log(user);
@@ -33,9 +36,21 @@ const AddPost = () => {
     // send post data to database
     const postRes = await axiosSecure.post("/posts", post);
     console.log(postRes);
+    if (postRes.data.insertedId) {
+      Swal.fire({
+        position: "middle",
+        icon: "success",
+        title: `Post added successfully`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
   };
   return (
     <div>
+      <Helmet>
+        <title>TalkRoute | Add Post</title>
+      </Helmet>
       <div>
         <form onSubmit={handleAddPost} className='px-8 max-w-screen-sm mx-auto'>
           <div>
@@ -162,4 +177,4 @@ const AddPost = () => {
   );
 };
 
-export default AddPost;
+export default AddNewPost;

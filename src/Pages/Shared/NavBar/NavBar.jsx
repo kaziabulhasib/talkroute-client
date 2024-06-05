@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import toast from "react-hot-toast";
+import { MdNotificationAdd } from "react-icons/md";
 
 const NavBar = () => {
   const { user, logOut } = useAuth();
@@ -22,12 +23,13 @@ const NavBar = () => {
       <li>
         <Link to='/membership'>Membership</Link>
       </li>
+
       <li>
-        <Link to='/'>Notification icon</Link>
+        <button className='btn btn-sm'>
+          <MdNotificationAdd className='text-xl' />
+          <div className='badge badge-secondary'>+ 1</div>
+        </button>
       </li>
-      {/* <li>
-        <Link to='/addpost'>Add Post</Link>
-      </li> */}
     </>
   );
   return (
@@ -56,13 +58,17 @@ const NavBar = () => {
           </ul>
         </div>
 
-        <div className='flex justify-center items-center gap-4 btn btn-ghost'>
+        <Link
+          to='/'
+          className='flex justify-center items-center gap-4 btn btn-ghost'>
           <img src='/logo.png' alt='' className='w-12 h-12 ' />
           <p className='text-2xl font-bold'>TalkRoute</p>
-        </div>
+        </Link>
       </div>
-      <div className='navbar-center hidden lg:flex'>
-        <ul className='menu menu-horizontal px-1'>{links}</ul>
+      <div className='navbar-center  hidden lg:flex lg:items-center '>
+        <ul className='menu menu-horizontal font-medium items-center  text-xl px-1 sm:6 md:gap-8 lg:gap-24'>
+          {links}
+        </ul>
       </div>
 
       <div className='navbar-end'>
@@ -104,7 +110,7 @@ const NavBar = () => {
           <>
             <Link
               to='/login'
-              className='btn btn-sm btn-primary text-slate-200 hover:text-slate-500 '>
+              className='btn btn-sm bg-gray-700 hover:text-gray-900 text-white hover:bg-slate-300 '>
               Join US
             </Link>
           </>

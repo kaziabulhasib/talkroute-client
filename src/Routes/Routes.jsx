@@ -11,6 +11,7 @@ import Dashboard from "../Layout/Dashboard";
 import MyProfile from "../Pages/Dashboard/MyProfile/MyProfile";
 
 import AddNewPost from "../Pages/Dashboard/AddNewPost/AddNewPost";
+import MyPost from "../Pages/Dashboard/MyPost/MyPost";
 
 export const router = createBrowserRouter([
   {
@@ -62,6 +63,10 @@ export const router = createBrowserRouter([
       {
         path: "addpost",
         element: <AddNewPost></AddNewPost>,
+      },
+      {
+        path: "mypost",
+        element: <MyPost></MyPost>,
       },
     ],
   },

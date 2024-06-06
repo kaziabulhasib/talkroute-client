@@ -1,52 +1,92 @@
-import { useEffect, useState } from "react";
+import { FaIdBadge } from "react-icons/fa6";
 import useAuth from "../../../hooks/useAuth";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useMyPost from "../../../hooks/useMyPost";
+import { useNavigate } from "react-router-dom";
 
 const MyProfile = () => {
   const { user } = useAuth();
-  const axiosSecure = useAxiosSecure();
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [posts] = useMyPost();
 
-  useEffect(() => {
-    const fetchUserPosts = async () => {
-      if (user && user.email) {
-        try {
-          const response = await axiosSecure.get(`/posts/user/${user.email}`);
-          if (response.status === 200) {
-            setPosts(response.data);
-          } else {
-            console.error("Failed to fetch posts");
-          }
-        } catch (error) {
-          console.error("Error fetching posts", error);
-        }
-      }
-      setLoading(false);
+  //
+  const navigate = useNavigate();
+
+  // date format
+  const formatPostTime = (datetimeStr) => {
+    const date = new Date(datetimeStr);
+    const options = {
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
     };
 
-    fetchUserPosts();
-  }, [user, axiosSecure]);
+    const formattedDate = date.toLocaleString("en-US", options);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+    return formattedDate.replace(",", "");
+  };
 
+  // handle post dettails
+  const handleClick = (id) => {
+    console.log(id);
+    navigate(`/posts/${id}`);
+  };
   return (
     <div>
-      <h1 className='text-4xl text-center'>My Profile</h1>
-      <h2 className='text-2xl text-center'>Total Posts : {posts.length}</h2>
-      <div>
-        {posts.length > 0 ? (
-          posts.map((post) => (
-            <div key={post._id}>
-              <h3>{post.postTitle}</h3>
-              <p>{post.content}</p>
+      <div
+        className='flex flex-col mx-auto w-[90%] p-6 space-y-6 overflow-hidden  rounded-lg shadow-md mt-8 min-h-[calc\(100vh-300px\)]
+'>
+        <div className='flex justify-evenly w-2/3 mx-auto  items-center border py-4 rounded-lg'>
+          <img
+            alt=''
+            src={user.photoURL}
+            className='object-cover w-16 h-16 rounded-full shadow '
+          />
+          <h1 className='text-xl font-medium '>{user.displayName}</h1>
+          <h2>{user.email}</h2>
+          <p className='text-4xl'>
+            <FaIdBadge></FaIdBadge>
+          </p>
+        </div>
+
+        <div className='flex justify-around py-36'>
+          {posts.slice(0, 3).map((post) => (
+            <div
+              key={post._id}
+              onClick={() => handleClick(post._id)}
+              className='p-6 px-16 mx-auto  border rounded-lg hover:cursor-pointer'>
+              <article className='space-y-8 '>
+                <div className='space-y-6'>
+                  {/* post title */}
+                  <h1 className='text-2xl font-bold md:text-3xl text-center'>
+                    {post.postTitle}
+                  </h1>
+                  <div className='flex flex-col gap-6 space-x-4 items-start justify-between w-full md:flex-row md:items-center '>
+                    {/* Author image */}
+                    <div className='flex items-center md:space-x-2'>
+                      <img
+                        src={post.authorImage}
+                        alt=''
+                        className='w-12 h-12 border rounded-full '
+                      />
+                      {/* Time */}
+                      <p className='text-sm'>
+                        • {formatPostTime(post.postTime)}
+                      </p>
+                    </div>
+                    {/* votes & comments count */}
+                    <p className='flex-shrink-0 mt-3 text-sm md:mt-0'>
+                      • {0} comments • {post.upVote + post.downVote} votes
+                    </p>
+                  </div>
+                </div>
+              </article>
+              <div>
+                <h1>#{post.postTag}</h1>
+              </div>
             </div>
-          ))
-        ) : (
-          <p>No posts found</p>
-        )}
+          ))}
+        </div>
       </div>
     </div>
   );

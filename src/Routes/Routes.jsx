@@ -12,6 +12,7 @@ import MyProfile from "../Pages/Dashboard/MyProfile/MyProfile";
 
 import AddNewPost from "../Pages/Dashboard/AddNewPost/AddNewPost";
 import MyPost from "../Pages/Dashboard/MyPost/MyPost";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -34,7 +35,7 @@ export const router = createBrowserRouter([
             throw new Error("Failed to fetch post");
           }
           const post = await response.json();
-          return { post }; // Make sure it returns an object with a `post` key
+          return { post };
         },
       },
       {
@@ -54,7 +55,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <Dashboard></Dashboard>,
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "myprofile",

@@ -38,7 +38,7 @@ const Banner = ({ onSearch }) => {
         interval={2000}
         infiniteLoop={true}>
         <div>
-          <img className='h-full' style={{ height: "100%" }} src={banner1} />
+          <img className='h-full' src={banner1} />
         </div>
         <div>
           <img src={banner2} />

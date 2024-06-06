@@ -36,12 +36,12 @@ const MyPost = () => {
 
   return (
     <div className='px-24 my-16'>
-      <h1 className='text-4xl text-center'>Total Posts : {posts.length}</h1>
+      <h1 className='text-4xl text-center '>Total Posts : {posts.length}</h1>
       <div>
         {posts.length > 0 ? (
-          <div className='overflow-x-auto my-14'>
+          <div className='overflow-x-auto my-14 border'>
             <table className='table table-xs table-pin-rows table-pin-cols'>
-              <thead className='text-xl'>
+              <thead className='text-xl '>
                 <tr>
                   <th></th>
                   <td>Post Title</td>
@@ -50,17 +50,17 @@ const MyPost = () => {
                   <td>Delete</td>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className=''>
                 {posts.map((post, index) => (
-                  <tr className='text-2xl' key={post._id}>
+                  <tr className='text-2xl ' key={post._id}>
                     <th className=' py-4 text-[18px]'>{index + 1}</th>
-                    <td className=' py-4 text-[18px]'>{post.postTitle}</td>
-                    <td className=' py-4 text-[18px] '>{0}</td>
-                    <td className=' py-4 text-[18px] flex '>
-                      <LiaComments />
+                    <td className=' py-4 text-[18px] '>{post.postTitle}</td>
+                    <td className=' py-4    text-[18px] '>{0}</td>
+                    <td className=' py-4   '>
+                      <LiaComments className='text-4xl ml-6' />
                     </td>
                     <td className=' py-4 text-[18px]'>
-                      <FaTrash></FaTrash>
+                      <FaTrash className='text-3xl ml-4 hover:cursor-pointer'></FaTrash>
                     </td>
                   </tr>
                 ))}

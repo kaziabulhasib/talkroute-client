@@ -32,13 +32,14 @@ const AddNewPost = () => {
       downVote,
     };
     console.log(post);
+    form.reset();
 
     // send post data to database
     const postRes = await axiosSecure.post("/posts", post);
     console.log(postRes);
     if (postRes.data.insertedId) {
       Swal.fire({
-        position: "middle",
+        position: "center",
         icon: "success",
         title: `Post added successfully`,
         showConfirmButton: false,

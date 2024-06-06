@@ -1,9 +1,12 @@
 import { FaTrash } from "react-icons/fa6";
 import { LiaComments } from "react-icons/lia";
 import useMyPost from "../../../hooks/useMyPost";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const MyPost = () => {
   const [posts, refetch, isLoading, error] = useMyPost();
+  const axiosSecure = useAxiosSecure();
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -13,6 +16,33 @@ const MyPost = () => {
     return <div>Error fetching posts</div>;
   }
 
+  // delte function
+  const handleDeltePost = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/posts/${id}`).then((res) => {
+          console.log(res);
+          if (res.data.deletedCount > 0) {
+            refetch();
+            // swal
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your Post has been deleted.",
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  };
   return (
     <div className='px-24 my-16'>
       <h1 className='text-4xl text-center '>Total Posts : {posts.length}</h1>
@@ -39,7 +69,11 @@ const MyPost = () => {
                       <LiaComments className='text-4xl ml-6' />
                     </td>
                     <td className='py-4 text-[18px]'>
-                      <FaTrash className='text-3xl ml-4 hover:cursor-pointer' />
+                      <button
+                        onClick={() => handleDeltePost(post._id)}
+                        className='btn btn-ghost'>
+                        <FaTrash className='text-3xl ml-4 hover:cursor-pointer' />
+                      </button>
                     </td>
                   </tr>
                 ))}

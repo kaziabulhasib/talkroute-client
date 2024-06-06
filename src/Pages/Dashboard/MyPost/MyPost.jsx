@@ -1,37 +1,16 @@
-import { useEffect, useState } from "react";
-import useAuth from "../../../hooks/useAuth";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { FaTrash } from "react-icons/fa6";
 import { LiaComments } from "react-icons/lia";
+import useMyPost from "../../../hooks/useMyPost";
 
 const MyPost = () => {
-  const { user } = useAuth();
-  const axiosSecure = useAxiosSecure();
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [posts, refetch, isLoading, error] = useMyPost();
 
-  useEffect(() => {
-    const fetchUserPosts = async () => {
-      if (user && user.email) {
-        try {
-          const response = await axiosSecure.get(`/posts/user/${user.email}`);
-          if (response.status === 200) {
-            setPosts(response.data);
-          } else {
-            console.error("Failed to fetch posts");
-          }
-        } catch (error) {
-          console.error("Error fetching posts", error);
-        }
-      }
-      setLoading(false);
-    };
-
-    fetchUserPosts();
-  }, [user, axiosSecure]);
-
-  if (loading) {
+  if (isLoading) {
     return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error fetching posts</div>;
   }
 
   return (
@@ -53,14 +32,14 @@ const MyPost = () => {
               <tbody className=''>
                 {posts.map((post, index) => (
                   <tr className='text-2xl ' key={post._id}>
-                    <th className=' py-4 text-[18px]'>{index + 1}</th>
-                    <td className=' py-4 text-[18px] '>{post.postTitle}</td>
-                    <td className=' py-4    text-[18px] '>{0}</td>
-                    <td className=' py-4   '>
+                    <th className='py-4 text-[18px]'>{index + 1}</th>
+                    <td className='py-4 text-[18px]'>{post.postTitle}</td>
+                    <td className='py-4 text-[18px]'>{0}</td>
+                    <td className='py-4'>
                       <LiaComments className='text-4xl ml-6' />
                     </td>
-                    <td className=' py-4 text-[18px]'>
-                      <FaTrash className='text-3xl ml-4 hover:cursor-pointer'></FaTrash>
+                    <td className='py-4 text-[18px]'>
+                      <FaTrash className='text-3xl ml-4 hover:cursor-pointer' />
                     </td>
                   </tr>
                 ))}

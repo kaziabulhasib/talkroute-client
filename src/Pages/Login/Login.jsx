@@ -6,6 +6,9 @@ import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { Helmet } from "react-helmet-async";
 
+const from = location.state?.from?.pathname || "/";
+console.log("state in the location:", location.state);
+
 const Login = () => {
   // const { signInWithGoogle, signIn } = useAuth();
   const { signInWithGoogle, signIn } = useContext(AuthContext);
@@ -25,7 +28,7 @@ const Login = () => {
       console.log(user);
 
       toast.success("Signin Successful");
-      // navigate(from, { replace: true });
+      navigate(from, { replace: true });
     });
   };
 
@@ -33,7 +36,7 @@ const Login = () => {
   const handleGoogleLogin = async () => {
     try {
       await signInWithGoogle();
-      // navigate(from, { replace: true });
+      navigate(from, { replace: true });
       navigate("/");
       toast.success("Logged in Successfully");
     } catch (err) {

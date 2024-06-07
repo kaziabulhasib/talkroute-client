@@ -1,16 +1,26 @@
+import React from "react";
 import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
-const CommentSection = ({ postTitle }) => {
+const CommentSection = ({ postTitle, commentTextAreaRef }) => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
 
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
+
+    if (!user) {
+      toast.error("please Login to comment");
+      navigate("/login");
+      return;
+    }
     const comment = e.target.comment.value;
     const userEmail = user.email;
-    // const postTitle = postTitle;
+
     const commentInfo = { comment, userEmail, postTitle };
     console.log(commentInfo);
 
@@ -27,13 +37,15 @@ const CommentSection = ({ postTitle }) => {
       });
     }
   };
+
   return (
     <div>
       <form onSubmit={handleCommentSubmit}>
         <textarea
           name='comment'
           placeholder='Write a comment...'
-          className='textarea textarea-bordered textarea-lg w-full  mb-4'></textarea>
+          className='textarea textarea-bordered textarea-lg w-full mb-4'
+          ref={commentTextAreaRef}></textarea>
 
         <input type='submit' className='btn' />
       </form>

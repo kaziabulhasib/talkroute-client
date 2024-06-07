@@ -1,3 +1,4 @@
+import React, { useRef } from "react";
 import { BiDownvote, BiUpvote } from "react-icons/bi";
 import { FaComment } from "react-icons/fa";
 import { FaRegShareFromSquare } from "react-icons/fa6";
@@ -6,16 +7,15 @@ import CommentSection from "../../Components/CommentSection";
 
 const PostDetails = () => {
   const data = useLoaderData();
+  const commentTextAreaRef = useRef(null);
 
-  // showing loader if data is loading -
+  // Show loader if data is loading
   if (!data || !data.post) {
     return <div>Loading...</div>;
   }
 
   const { post } = data;
-  //   console.log(post);
   const {
-    _id,
     postTitle,
     authorName,
     authorEmail,
@@ -27,7 +27,7 @@ const PostDetails = () => {
     postTime,
   } = post;
 
-  // date format
+  // Date format
   const formatPostTime = (datetimeStr) => {
     const date = new Date(datetimeStr);
     const options = {
@@ -43,10 +43,16 @@ const PostDetails = () => {
     return formattedDate.replace(",", "");
   };
 
-  // date format end
+  // Focus on the comment text area
+  const handleCommentIconClick = () => {
+    if (commentTextAreaRef.current) {
+      commentTextAreaRef.current.focus();
+    }
+  };
+
   return (
     <div>
-      <article className='max-w-2xl   mx-auto space-y-12 dark:bg-gray-100 dark:text-gray-900 border mt-16 px-20 py-16'>
+      <article className='max-w-2xl mx-auto space-y-12 dark:bg-gray-100 dark:text-gray-900 border mt-16 px-20 py-16'>
         <div className='w-full mx-auto space-y-4 text-center'>
           <h1 className='text-4xl font-bold leading-tight md:text-5xl'>
             {postTitle}
@@ -78,42 +84,45 @@ const PostDetails = () => {
               className='self-center flex-shrink-0 w-24 h-24 border rounded-full md:justify-self-start dark:bg-gray-500 dark:border-gray-300'
             />
             <div className='flex flex-col justify-center'>
-              <h4 className='text-3xl font-bold'>Leroy Jenkins</h4>
+              <h4 className='text-3xl font-bold'>{authorName}</h4>
             </div>
           </div>
-          <div className='flex justify-between pt-12 space-x-4 align-center '>
+          <div className='flex justify-between pt-12 space-x-4 align-center'>
             <a
               rel='noopener noreferrer'
-              href='#'
-              aria-label='GitHub'
-              className='p-4 rounded-md text-3xl border text-center hover:bg-gray-700 hover:text-white '>
-              <FaComment></FaComment>
+              href='#comment-section'
+              aria-label='Comment'
+              className='p-4 rounded-md text-3xl border text-center hover:bg-gray-700 hover:text-white'
+              onClick={handleCommentIconClick}>
+              <FaComment />
             </a>
             <a
               rel='noopener noreferrer'
               href='#'
-              aria-label='Dribble'
               className='p-4 rounded-md text-3xl border'>
               <BiUpvote />
             </a>
             <a
               rel='noopener noreferrer'
               href='#'
-              aria-label='Twitter'
               className='p-4 rounded-md text-3xl border'>
               <BiDownvote />
             </a>
             <a
               rel='noopener noreferrer'
               href='#'
-              aria-label='Email'
+              aria-label='Share'
               className='p-4 rounded-md text-3xl border hover:bg-gray-700 hover:text-white'>
               <FaRegShareFromSquare />
             </a>
           </div>
         </div>
         <div className='divider'></div>
-        <CommentSection postTitle={postTitle}></CommentSection>
+        <CommentSection
+          postTitle={postTitle}
+          id='comment-section'
+          commentTextAreaRef={commentTextAreaRef}
+        />
       </article>
     </div>
   );

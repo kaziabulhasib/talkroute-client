@@ -54,7 +54,7 @@ const MyProfile = () => {
             <div
               key={post._id}
               onClick={() => handleClick(post._id)}
-              className='p-6 px-16 mx-auto  border rounded-lg hover:cursor-pointer'>
+              className='py-8 px-16 mx-auto  border rounded-lg hover:cursor-pointer'>
               <article className='space-y-8 '>
                 <div className='space-y-6'>
                   {/* post title */}

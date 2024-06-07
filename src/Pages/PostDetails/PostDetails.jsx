@@ -2,6 +2,7 @@ import { BiDownvote, BiUpvote } from "react-icons/bi";
 import { FaComment } from "react-icons/fa";
 import { FaRegShareFromSquare } from "react-icons/fa6";
 import { useLoaderData } from "react-router-dom";
+import CommentSection from "../../Components/CommentSection";
 
 const PostDetails = () => {
   const data = useLoaderData();
@@ -111,6 +112,8 @@ const PostDetails = () => {
             </a>
           </div>
         </div>
+        <div className='divider'></div>
+        <CommentSection postTitle={postTitle}></CommentSection>
       </article>
     </div>
   );

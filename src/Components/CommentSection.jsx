@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 
@@ -15,6 +16,16 @@ const CommentSection = ({ postTitle }) => {
 
     const commentRes = await axiosSecure.post("/comments", commentInfo);
     console.log(commentRes);
+    if (commentRes.data.insertedId) {
+      e.target.reset();
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: `Comment Submitted Successfully`,
+        showConfirmButton: false,
+        timer: 2500,
+      });
+    }
   };
   return (
     <div>

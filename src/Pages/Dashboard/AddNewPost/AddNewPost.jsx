@@ -30,6 +30,7 @@ const AddNewPost = () => {
       postTag,
       upVote,
       downVote,
+      commentCount: 0,
     };
     console.log(post);
     form.reset();

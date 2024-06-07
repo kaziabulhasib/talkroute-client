@@ -12,6 +12,7 @@ const PostCard = ({ post }) => {
     upVote,
     downVote,
     postTime,
+    commentCount,
   } = post;
   const navigate = useNavigate();
 
@@ -61,7 +62,7 @@ const PostCard = ({ post }) => {
               </div>
               {/* votes & comments count */}
               <p className='flex-shrink-0 mt-3 text-sm md:mt-0'>
-                • {0} comments • {upVote + downVote} votes
+                • {commentCount || 0} comments • {upVote + downVote} votes
               </p>
             </div>
           </div>

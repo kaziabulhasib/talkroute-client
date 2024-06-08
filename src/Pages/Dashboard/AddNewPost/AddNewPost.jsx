@@ -54,7 +54,9 @@ const AddNewPost = () => {
         <title>TalkRoute | Add Post</title>
       </Helmet>
       <div>
-        <form onSubmit={handleAddPost} className='px-8 max-w-screen-sm mx-auto'>
+        <form
+          onSubmit={handleAddPost}
+          className='p-8 my-6 max-w-screen-sm mx-auto shadow-lg rounded-lg'>
           <div>
             <img
               className='w-16 h-16 rounded-full'

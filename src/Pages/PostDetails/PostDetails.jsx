@@ -1,20 +1,25 @@
-import React, { useRef } from "react";
+import { useRef, useState } from "react";
 import { BiDownvote, BiUpvote } from "react-icons/bi";
 import { FaComment } from "react-icons/fa";
 import { FaRegShareFromSquare } from "react-icons/fa6";
 import { useLoaderData } from "react-router-dom";
 import CommentSection from "../../Components/CommentSection";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAuth from "../../hooks/useAuth";
 
 const PostDetails = () => {
   const data = useLoaderData();
   const commentTextAreaRef = useRef(null);
+  const axiosSecure = useAxiosSecure();
+  const { user } = useAuth();
+  const [post, setPost] = useState(data.post);
 
   // Show loader if data is loading
   if (!data || !data.post) {
     return <div>Loading...</div>;
   }
 
-  const { post } = data;
+  // const { post } = data;
   const {
     _id: postId,
     postTitle,
@@ -50,24 +55,49 @@ const PostDetails = () => {
       commentTextAreaRef.current.focus();
     }
   };
-
-  // upvote
-  const handleUpVote = () => {
-    console.log("increased upvote");
+  // upvote hancle
+  const handleUpVote = async () => {
+    try {
+      const userId = user.email;
+      const response = await axiosSecure.post(`/posts/${postId}/upvote`, {
+        userId,
+      });
+      if (response.status === 200) {
+        setPost((prevPost) => ({
+          ...prevPost,
+          upVote: prevPost.upVote + 1,
+        }));
+      }
+    } catch (error) {
+      console.error("Error upvoting post:", error);
+    }
+  };
+  // downvote handle
+  const handleDownVote = async () => {
+    try {
+      const userId = user.email;
+      const response = await axiosSecure.post(`/posts/${postId}/downvote`, {
+        userId,
+      });
+      if (response.status === 200) {
+        setPost((prevPost) => ({
+          ...prevPost,
+          upVote: prevPost.upVote + 1,
+        }));
+      }
+    } catch (error) {
+      console.error("Error upvoting post:", error);
+    }
   };
 
-  //down vote
-  const handleDownVote = () => {
-    console.log("increased downvote");
-  };
   return (
     <div>
       <article className='max-w-2xl mx-auto space-y-12 dark:bg-gray-100 dark:text-gray-900 border mt-16 px-20 py-16'>
-        <div className='w-full mx-auto space-y-4 text-center'>
-          <h1 className='text-4xl font-bold leading-tight md:text-5xl'>
+        <div className='w-full mx-auto space-y-4 '>
+          <h1 className='text-2xl font-bold leading-tight md:text-3xl'>
             {postTitle}
           </h1>
-          <p className='text-sm dark:text-gray-600'>
+          <p className='text-sm text-center dark:text-gray-600'>
             by
             <a
               rel='noopener noreferrer'
@@ -91,7 +121,7 @@ const PostDetails = () => {
             <img
               src={authorImage}
               alt='Author Image'
-              className='self-center flex-shrink-0 w-24 h-24 border rounded-full md:justify-self-start dark:bg-gray-500 dark:border-gray-300'
+              className='self-center flex-shrink-0 w-24 h-24 p-2 bg-white  border-2 border-slate-600 rounded-full md:justify-self-start '
             />
             <div className='flex flex-col justify-center'>
               <h4 className='text-3xl font-bold'>{authorName}</h4>

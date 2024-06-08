@@ -91,15 +91,15 @@ const NavBar = () => {
                 tabIndex={0}
                 className='menu menu-sm dropdown-content mt-1 z-[1] p-2 shadow rounded-box w-52 bg-gray-700 '>
                 <li>
-                  <h1 className='text-xl text-white ml-6 text-center font-bold'>
+                  <h1 className=' text-[18px] my-2 text-white ml-6 text-center font-medium'>
                     {user?.displayName || "user name not found"}
                   </h1>
                   {/* Dashboard  */}
-                  <Link to='/dashboard/myprofile' className='btn mb-2'>
+                  <Link to='/dashboard/myprofile' className='btn btn-sm mb-2'>
                     Dashboard
                   </Link>
                   {/* log out   */}
-                  <Link onClick={handleLogout} className='btn'>
+                  <Link onClick={handleLogout} className='btn btn-sm'>
                     Log Out
                   </Link>
                 </li>

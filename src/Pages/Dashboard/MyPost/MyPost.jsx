@@ -74,7 +74,9 @@ const MyPost = () => {
                   <tr className='text-2xl ' key={post._id}>
                     <th className='py-4 text-[18px]'>{index + 1}</th>
                     <td className='py-4 text-[18px]'>{post.postTitle}</td>
-                    <td className='py-4 text-[18px]'>{0}</td>
+                    <td className='py-4 text-[18px]'>
+                      {post.upVote + post.downVote}
+                    </td>
                     <td className='py-4'>
                       <button
                         onClick={() => handleComment(post._id)}

@@ -49,7 +49,7 @@ const Login = () => {
       <Helmet>
         <title>TalkRoute | Login</title>
       </Helmet>
-      <div className='hero min-h-screen border '>
+      <div className='hero min-h-screen  '>
         <div className='hero-content flex-col lg:flex-row gap-24  '>
           <div className='text-center lg:text-left  '>
             <img src='/public/logo.png' className='w-full' alt='' />

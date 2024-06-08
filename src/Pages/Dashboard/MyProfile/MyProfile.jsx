@@ -2,6 +2,7 @@ import { FaIdBadge } from "react-icons/fa6";
 import useAuth from "../../../hooks/useAuth";
 import useMyPost from "../../../hooks/useMyPost";
 import { useNavigate } from "react-router-dom";
+import PostCard from "../../../Components/PostCard/PostCard";
 
 const MyProfile = () => {
   const { user } = useAuth();
@@ -27,10 +28,10 @@ const MyProfile = () => {
   };
 
   // handle post dettails
-  const handleClick = (id) => {
-    console.log(id);
-    navigate(`/posts/${id}`);
-  };
+  // const handleClick = (id) => {
+  //   console.log(id);
+  //   navigate(`/posts/${id}`);
+  // };
   return (
     <div>
       <div
@@ -49,42 +50,43 @@ const MyProfile = () => {
           </p>
         </div>
 
-        <div className='flex justify-around py-36'>
+        <div className='flex gap-6 justify-around py-36'>
           {posts.slice(0, 3).map((post) => (
-            <div
-              key={post._id}
-              onClick={() => handleClick(post._id)}
-              className='py-8 px-16 mx-auto  border rounded-lg hover:cursor-pointer'>
-              <article className='space-y-8 '>
-                <div className='space-y-6'>
-                  {/* post title */}
-                  <h1 className='text-2xl font-bold md:text-3xl text-center'>
-                    {post.postTitle}
-                  </h1>
-                  <div className='flex flex-col gap-6 space-x-4 items-start justify-between w-full md:flex-row md:items-center '>
-                    {/* Author image */}
-                    <div className='flex items-center md:space-x-2'>
-                      <img
-                        src={post.authorImage}
-                        alt=''
-                        className='w-12 h-12 border rounded-full '
-                      />
-                      {/* Time */}
-                      <p className='text-sm'>
-                        • {formatPostTime(post.postTime)}
-                      </p>
-                    </div>
-                    {/* votes & comments count */}
-                    <p className='flex-shrink-0 mt-3 text-sm md:mt-0'>
-                      • {0} comments • {post.upVote + post.downVote} votes
-                    </p>
-                  </div>
-                </div>
-              </article>
-              <div>
-                <h1>#{post.postTag}</h1>
-              </div>
-            </div>
+            // <div
+            //   key={post._id}
+            //   onClick={() => handleClick(post._id)}
+            //   className='py-8 px-16 mx-auto  border rounded-lg hover:cursor-pointer'>
+            //   <article className='space-y-8 '>
+            //     <div className='space-y-6'>
+            //       {/* post title */}
+            //       <h1 className='text-xl font-bold md:text-2xl text-left'>
+            //         {post.postTitle}
+            //       </h1>
+            //       <div className='flex flex-col gap-6 space-x-4 items-start justify-between w-full md:flex-row md:items-center '>
+            //         {/* Author image */}
+            //         <div className='flex items-center md:space-x-2'>
+            //           <img
+            //             src={post.authorImage}
+            //             alt=''
+            //             className='w-12 h-12 border rounded-full '
+            //           />
+            //           {/* Time */}
+            //           <p className='text-sm'>
+            //             • {formatPostTime(post.postTime)}
+            //           </p>
+            //         </div>
+            //         {/* votes & comments count */}
+            //         <p className='flex-shrink-0 mt-3 text-sm md:mt-0'>
+            //           • {0} comments • {post.upVote + post.downVote} votes
+            //         </p>
+            //       </div>
+            //     </div>
+            //   </article>
+            //   <div>
+            //     <h1>#{post.postTag}</h1>
+            //   </div>
+            // </div>
+            <PostCard key={post.id} post={post}></PostCard>
           ))}
         </div>
       </div>

@@ -2,12 +2,14 @@ import { useRef, useState } from "react";
 import { BiDownvote, BiUpvote } from "react-icons/bi";
 import { FaComment } from "react-icons/fa";
 import { FaRegShareFromSquare } from "react-icons/fa6";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import CommentSection from "../../Components/CommentSection";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const PostDetails = () => {
+  const navigate = useNavigate();
   const data = useLoaderData();
   const commentTextAreaRef = useRef(null);
   const axiosSecure = useAxiosSecure();
@@ -57,6 +59,11 @@ const PostDetails = () => {
   };
   // upvote hancle
   const handleUpVote = async () => {
+    if (!user) {
+      toast.error("please Login to vote");
+      navigate("/login");
+      return;
+    }
     try {
       const userId = user.email;
       const response = await axiosSecure.post(`/posts/${postId}/upvote`, {
@@ -74,6 +81,11 @@ const PostDetails = () => {
   };
   // downvote handle
   const handleDownVote = async () => {
+    if (!user) {
+      toast.error("please Login to vote");
+      navigate("/login");
+      return;
+    }
     try {
       const userId = user.email;
       const response = await axiosSecure.post(`/posts/${postId}/downvote`, {

@@ -1,11 +1,19 @@
 import { useParams } from "react-router-dom";
 import useComments from "../../hooks/useComments";
+import { useState } from "react";
+import Modal from "../../Components/Modal";
 
 const CommentsPage = () => {
   const { id } = useParams();
   const [comments, refetch, isLoading, error] = useComments(id);
 
-  console.log(comments);
+  const [showModal, setShowModal] = useState(false);
+  const [fullComment, setFullComment] = useState("");
+
+  const handleReadMore = (comment) => {
+    setFullComment(comment);
+    setShowModal(true);
+  };
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -36,7 +44,16 @@ const CommentsPage = () => {
               <tr key={c._id}>
                 <th>{index + 1}</th>
                 <td>{c.userEmail}</td>
-                <td>{c.comment.substring(0, 20)}</td>
+                <td>
+                  {c.comment.substring(0, 20)}
+                  {c.comment.length > 20 && (
+                    <span
+                      className='text-blue-500 underline cursor-pointer ml-2'
+                      onClick={() => handleReadMore(c.comment)}>
+                      Read More
+                    </span>
+                  )}
+                </td>
                 <td>
                   <select className='select select-bordered w-full max-w-[160px]'>
                     <option disabled selected>
@@ -57,6 +74,11 @@ const CommentsPage = () => {
           </tbody>
         </table>
       </div>
+      {showModal && (
+        <Modal onClose={() => setShowModal(false)}>
+          <p>{fullComment}</p>
+        </Modal>
+      )}
     </div>
   );
 };

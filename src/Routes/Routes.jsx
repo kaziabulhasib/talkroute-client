@@ -13,6 +13,7 @@ import MyProfile from "../Pages/Dashboard/MyProfile/MyProfile";
 import AddNewPost from "../Pages/Dashboard/AddNewPost/AddNewPost";
 import MyPost from "../Pages/Dashboard/MyPost/MyPost";
 import PrivateRoute from "./PrivateRoute";
+import CommentsPage from "../Pages/CommentsPage/CommentsPage";
 
 export const router = createBrowserRouter([
   {
@@ -76,6 +77,10 @@ export const router = createBrowserRouter([
       {
         path: "mypost",
         element: <MyPost></MyPost>,
+      },
+      {
+        path: "comments/:id",
+        element: <CommentsPage></CommentsPage>,
       },
     ],
   },

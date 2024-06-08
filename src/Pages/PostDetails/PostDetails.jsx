@@ -16,6 +16,7 @@ const PostDetails = () => {
 
   const { post } = data;
   const {
+    _id: postId,
     postTitle,
     authorName,
     authorEmail,
@@ -50,6 +51,15 @@ const PostDetails = () => {
     }
   };
 
+  // upvote
+  const handleUpVote = () => {
+    console.log("increased upvote");
+  };
+
+  //down vote
+  const handleDownVote = () => {
+    console.log("increased downvote");
+  };
   return (
     <div>
       <article className='max-w-2xl mx-auto space-y-12 dark:bg-gray-100 dark:text-gray-900 border mt-16 px-20 py-16'>
@@ -99,10 +109,12 @@ const PostDetails = () => {
             <a
               rel='noopener noreferrer'
               href='#'
+              onClick={handleUpVote}
               className='p-4 rounded-md text-3xl border'>
               <BiUpvote />
             </a>
             <a
+              onClick={handleDownVote}
               rel='noopener noreferrer'
               href='#'
               className='p-4 rounded-md text-3xl border'>
@@ -120,6 +132,7 @@ const PostDetails = () => {
         <div className='divider'></div>
         <CommentSection
           postTitle={postTitle}
+          postId={postId}
           id='comment-section'
           commentTextAreaRef={commentTextAreaRef}
         />

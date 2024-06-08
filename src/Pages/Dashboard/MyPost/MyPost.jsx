@@ -3,10 +3,12 @@ import { LiaComments } from "react-icons/lia";
 import useMyPost from "../../../hooks/useMyPost";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useNavigate } from "react-router-dom";
 
 const MyPost = () => {
   const [posts, refetch, isLoading, error] = useMyPost();
   const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -15,6 +17,14 @@ const MyPost = () => {
   if (error) {
     return <div>Error fetching posts</div>;
   }
+
+  // handle comment function
+
+  const handleComment = (id) => {
+    console.log("post id", id);
+
+    navigate(`/dashboard/comments/${id}`);
+  };
 
   // delte function
   const handleDeltePost = (id) => {
@@ -66,13 +76,17 @@ const MyPost = () => {
                     <td className='py-4 text-[18px]'>{post.postTitle}</td>
                     <td className='py-4 text-[18px]'>{0}</td>
                     <td className='py-4'>
-                      <LiaComments className='text-4xl ml-6' />
+                      <button
+                        onClick={() => handleComment(post._id)}
+                        className='btn btn-ghost '>
+                        <LiaComments className='text-4xl ' />
+                      </button>
                     </td>
                     <td className='py-4 text-[18px]'>
                       <button
                         onClick={() => handleDeltePost(post._id)}
                         className='btn btn-ghost'>
-                        <FaTrash className='text-3xl ml-4 hover:cursor-pointer' />
+                        <FaTrash className='text-3xl  hover:cursor-pointer' />
                       </button>
                     </td>
                   </tr>

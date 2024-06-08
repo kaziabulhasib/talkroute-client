@@ -1,11 +1,10 @@
-import React from "react";
 import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
-const CommentSection = ({ postTitle, commentTextAreaRef }) => {
+const CommentSection = ({ postTitle, commentTextAreaRef, postId }) => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
@@ -21,7 +20,7 @@ const CommentSection = ({ postTitle, commentTextAreaRef }) => {
     const comment = e.target.comment.value;
     const userEmail = user.email;
 
-    const commentInfo = { comment, userEmail, postTitle };
+    const commentInfo = { comment, userEmail, postTitle, postId };
     console.log(commentInfo);
 
     const commentRes = await axiosSecure.post("/comments", commentInfo);

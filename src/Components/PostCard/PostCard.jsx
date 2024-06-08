@@ -37,17 +37,27 @@ const PostCard = ({ post }) => {
     console.log({ postTitle, _id });
     navigate(`/posts/${_id}`);
   };
+  // limiting title length
 
+  const maxLength = 80;
+  const ending = "...";
+
+  const limitedTitle =
+    postTitle.length > maxLength
+      ? postTitle.substring(0, maxLength - ending.length) + ending
+      : postTitle;
   return (
     <div>
       <div
         onClick={handleClick}
-        className='p-6 mx-auto space-y-12 border rounded-lg hover:cursor-pointer'>
+        className='p-6 mx-auto space-y-12 border rounded-lg hover:cursor-pointer h-[375px]'>
         <article className='space-y-8 '>
           <div className='space-y-6'>
             {/* post title */}
-            <h1 className='text-2xl font-bold md:text-3xl text-center'>
-              {postTitle}
+            <h1
+              className='text-xl font-bold md:text-2xl text-left'
+              title={postTitle}>
+              {limitedTitle}
             </h1>
             <div className='flex flex-col items-start justify-between w-full md:flex-row md:items-center '>
               {/* Author image */}

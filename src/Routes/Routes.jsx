@@ -18,6 +18,7 @@ import AllUser from "../Pages/Dashboard/AllUser/AllUser";
 import AdminProfile from "../Pages/Dashboard/AdminProfile/AdminProfile";
 import Activites from "../Pages/Dashboard/Activites/Activites";
 import MakeAnnouncement from "../Pages/Dashboard/MakeAnnouncement/MakeAnnouncement";
+import Payment from "../Pages/Dashboard/Payment/Payment";
 
 export const router = createBrowserRouter([
   {
@@ -60,6 +61,14 @@ export const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      {
+        path: "/payment",
+        element: (
+          <PrivateRoute>
+            <Payment></Payment>
+          </PrivateRoute>
+        ),
       },
     ],
   },

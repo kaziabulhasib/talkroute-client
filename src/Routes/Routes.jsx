@@ -14,6 +14,7 @@ import AddNewPost from "../Pages/Dashboard/AddNewPost/AddNewPost";
 import MyPost from "../Pages/Dashboard/MyPost/MyPost";
 import PrivateRoute from "./PrivateRoute";
 import CommentsPage from "../Pages/CommentsPage/CommentsPage";
+import AllUser from "../Pages/Dashboard/AllUser/AllUser";
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +26,7 @@ export const router = createBrowserRouter([
         path: "/",
         element: <Home></Home>,
       },
+
       {
         path: "/posts/:id",
         element: <PostDetails></PostDetails>,
@@ -66,6 +68,11 @@ export const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
+      // admin routes
+      {
+        path: "users",
+        element: <AllUser></AllUser>,
+      },
       {
         path: "myprofile",
         element: <MyProfile></MyProfile>,

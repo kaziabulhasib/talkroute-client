@@ -105,8 +105,8 @@ const PostDetails = () => {
   };
 
   // share url
-  const shareUrl = `http://localhost:5173/posts/${postId}`;
-  // const shareUrl = "https://www.npmjs.com/package/react-share";
+  // const shareUrl = `http://localhost:5173/posts/${postId}`;
+  const shareUrl = "https://www.npmjs.com/package/react-share";
 
   console.log(shareUrl);
 

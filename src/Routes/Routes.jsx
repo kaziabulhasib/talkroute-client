@@ -15,6 +15,9 @@ import MyPost from "../Pages/Dashboard/MyPost/MyPost";
 import PrivateRoute from "./PrivateRoute";
 import CommentsPage from "../Pages/CommentsPage/CommentsPage";
 import AllUser from "../Pages/Dashboard/AllUser/AllUser";
+import AdminProfile from "../Pages/Dashboard/AdminProfile/AdminProfile";
+import Activites from "../Pages/Dashboard/Activites/Activites";
+import MakeAnnouncement from "../Pages/Dashboard/MakeAnnouncement/MakeAnnouncement";
 
 export const router = createBrowserRouter([
   {
@@ -70,8 +73,20 @@ export const router = createBrowserRouter([
     children: [
       // admin routes
       {
+        path: "adminprofile",
+        element: <AdminProfile></AdminProfile>,
+      },
+      {
         path: "users",
         element: <AllUser></AllUser>,
+      },
+      {
+        path: "activities",
+        element: <Activites></Activites>,
+      },
+      {
+        path: "makeannouncement",
+        element: <MakeAnnouncement></MakeAnnouncement>,
       },
       {
         path: "myprofile",

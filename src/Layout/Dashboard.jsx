@@ -12,16 +12,18 @@ const Dashboard = () => {
           {isAdmin ? (
             <>
               <li>
-                <NavLink to='/'> Admin Profile</NavLink>
+                <NavLink to='/dashboard/adminprofile'> Admin Profile</NavLink>
               </li>
               <li>
                 <NavLink to='/dashboard/users'>Manage Users</NavLink>
               </li>
               <li>
-                <NavLink to='/dashboard/addpost'>Add Post</NavLink>
+                <NavLink to='/dashboard/activities'>Activities</NavLink>
               </li>
               <li>
-                <NavLink to='/dashboard/mypost'>My Post</NavLink>
+                <NavLink to='/dashboard/makeannouncement'>
+                  Make Announcement
+                </NavLink>
               </li>
             </>
           ) : (

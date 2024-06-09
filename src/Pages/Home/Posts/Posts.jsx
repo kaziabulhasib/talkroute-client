@@ -76,7 +76,7 @@ const Posts = ({ searchQuery }) => {
 
   return (
     <div>
-      <h1 className='text-3xl text-center'>All Posts</h1>
+      {/* <h1 className='text-3xl text-center'>All Posts</h1> */}
       <Swiper pagination={pagination} modules={[Pagination]} slidesPerView={1}>
         {chunkedItems.map((chunk, index) => (
           <SwiperSlide key={index}>

@@ -7,6 +7,8 @@ import CommentSection from "../../Components/CommentSection";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
+import { FacebookShareButton } from "react-share";
+import { Helmet } from "react-helmet";
 
 const PostDetails = () => {
   const navigate = useNavigate();
@@ -102,8 +104,17 @@ const PostDetails = () => {
     }
   };
 
+  // share url
+  const shareUrl = `http://localhost:5173/posts/${postId}`;
+  // const shareUrl = "https://www.npmjs.com/package/react-share";
+
+  console.log(shareUrl);
+
   return (
     <div>
+      <Helmet>
+        <title>TalkRoute | PostDetails</title>
+      </Helmet>
       <article className='max-w-2xl mx-auto space-y-12 dark:bg-gray-100 dark:text-gray-900 border mt-16 px-20 py-16'>
         <div className='w-full mx-auto space-y-4 '>
           <h1 className='text-2xl font-bold leading-tight md:text-3xl'>
@@ -162,12 +173,15 @@ const PostDetails = () => {
               className='p-4 rounded-md text-3xl border'>
               <BiDownvote />
             </a>
+
             <a
               rel='noopener noreferrer'
               href='#'
               aria-label='Share'
               className='p-4 rounded-md text-3xl border hover:bg-gray-700 hover:text-white'>
-              <FaRegShareFromSquare />
+              <FacebookShareButton url={shareUrl}>
+                <FaRegShareFromSquare />
+              </FacebookShareButton>
             </a>
           </div>
         </div>

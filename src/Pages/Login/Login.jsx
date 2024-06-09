@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { Helmet } from "react-helmet-async";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const from = location.state?.from?.pathname || "/";
 console.log("state in the location:", location.state);
@@ -12,6 +13,7 @@ console.log("state in the location:", location.state);
 const Login = () => {
   // const { signInWithGoogle, signIn } = useAuth();
   const { signInWithGoogle, signIn } = useContext(AuthContext);
+  const axiosPublic = useAxiosPublic();
 
   const navigate = useNavigate();
 
@@ -33,16 +35,19 @@ const Login = () => {
   };
 
   //
-  const handleGoogleLogin = async () => {
-    try {
-      await signInWithGoogle();
-      navigate(from, { replace: true });
-      navigate("/");
-      toast.success("Logged in Successfully");
-    } catch (err) {
-      console.log(err);
-      toast.error(err?.message);
-    }
+  const handleGoogleLogin = () => {
+    signInWithGoogle().then((result) => {
+      console.log(result.user);
+      const userINfo = {
+        email: result.user?.email,
+        name: result.user?.displayName,
+      };
+      axiosPublic.post("/users", userINfo).then((res) => {
+        console.log(res.data);
+        navigate("/");
+        toast.success("Login Successful!");
+      });
+    });
   };
   return (
     <div>

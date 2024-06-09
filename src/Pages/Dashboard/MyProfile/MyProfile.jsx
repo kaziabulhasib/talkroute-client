@@ -3,6 +3,7 @@ import useAuth from "../../../hooks/useAuth";
 import useMyPost from "../../../hooks/useMyPost";
 import { useNavigate } from "react-router-dom";
 import PostCard from "../../../Components/PostCard/PostCard";
+import { Helmet } from "react-helmet";
 
 const MyProfile = () => {
   const { user } = useAuth();
@@ -34,6 +35,9 @@ const MyProfile = () => {
   // };
   return (
     <div>
+      <Helmet>
+        <title>TalkRoute | MyProfile</title>
+      </Helmet>
       <div
         className='flex flex-col mx-auto w-[90%] p-6 space-y-6 overflow-hidden  rounded-lg shadow-md mt-8 min-h-[calc\(100vh-300px\)]
 '>

@@ -4,6 +4,7 @@ import useMyPost from "../../../hooks/useMyPost";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const MyPost = () => {
   const [posts, refetch, isLoading, error] = useMyPost();
@@ -54,51 +55,56 @@ const MyPost = () => {
     });
   };
   return (
-    <div className='px-24 my-16'>
-      <h1 className='text-4xl text-center '>Total Posts : {posts.length}</h1>
-      <div>
-        {posts.length > 0 ? (
-          <div className='overflow-x-auto my-14 border'>
-            <table className='table table-xs table-pin-rows table-pin-cols'>
-              <thead className='text-xl '>
-                <tr>
-                  <th></th>
-                  <td>Post Title</td>
-                  <td>Vote</td>
-                  <td>Comments</td>
-                  <td>Delete</td>
-                </tr>
-              </thead>
-              <tbody className=''>
-                {posts.map((post, index) => (
-                  <tr className='text-2xl ' key={post._id}>
-                    <th className='py-4 text-[18px]'>{index + 1}</th>
-                    <td className='py-4 text-[18px]'>{post.postTitle}</td>
-                    <td className='py-4 text-[18px]'>
-                      {post.upVote + post.downVote}
-                    </td>
-                    <td className='py-4'>
-                      <button
-                        onClick={() => handleComment(post._id)}
-                        className='btn btn-ghost '>
-                        <LiaComments className='text-4xl ' />
-                      </button>
-                    </td>
-                    <td className='py-4 text-[18px]'>
-                      <button
-                        onClick={() => handleDeltePost(post._id)}
-                        className='btn btn-ghost'>
-                        <FaTrash className='text-3xl  hover:cursor-pointer' />
-                      </button>
-                    </td>
+    <div>
+      <Helmet>
+        <title>TalkRoute | MyPost</title>
+      </Helmet>
+      <div className='px-24 my-16'>
+        <h1 className='text-4xl text-center '>Total Posts : {posts.length}</h1>
+        <div>
+          {posts.length > 0 ? (
+            <div className='overflow-x-auto my-14 border'>
+              <table className='table table-xs table-pin-rows table-pin-cols'>
+                <thead className='text-xl '>
+                  <tr>
+                    <th></th>
+                    <td>Post Title</td>
+                    <td>Vote</td>
+                    <td>Comments</td>
+                    <td>Delete</td>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        ) : (
-          <p>No posts found</p>
-        )}
+                </thead>
+                <tbody className=''>
+                  {posts.map((post, index) => (
+                    <tr className='text-2xl ' key={post._id}>
+                      <th className='py-4 text-[18px]'>{index + 1}</th>
+                      <td className='py-4 text-[18px]'>{post.postTitle}</td>
+                      <td className='py-4 text-[18px]'>
+                        {post.upVote + post.downVote}
+                      </td>
+                      <td className='py-4'>
+                        <button
+                          onClick={() => handleComment(post._id)}
+                          className='btn btn-ghost '>
+                          <LiaComments className='text-4xl ' />
+                        </button>
+                      </td>
+                      <td className='py-4 text-[18px]'>
+                        <button
+                          onClick={() => handleDeltePost(post._id)}
+                          className='btn btn-ghost'>
+                          <FaTrash className='text-3xl  hover:cursor-pointer' />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <p>No posts found</p>
+          )}
+        </div>
       </div>
     </div>
   );

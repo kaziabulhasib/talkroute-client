@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import useComments from "../../hooks/useComments";
 import { useState } from "react";
 import Modal from "../../Components/Modal";
+import { Helmet } from "react-helmet";
 
 const CommentsPage = () => {
   const { id } = useParams();
@@ -45,6 +46,9 @@ const CommentsPage = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>TalkRoute | Comments</title>
+      </Helmet>
       <div className='my-12'>
         <h1 className='text-2xl font-semibold  text-center border rounded-lg w-fit mx-auto px-6 py-4'>
           Total comments: {comments.length}

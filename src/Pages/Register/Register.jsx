@@ -5,14 +5,18 @@ import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 import { Helmet } from "react-helmet-async";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Register = () => {
   const { signInWithGoogle, createUser, updateUserProfile } = useAuth();
+
   const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   const onSubmit = async (data) => {
@@ -27,8 +31,18 @@ const Register = () => {
       if (loggedUser) {
         // Update user profile
         await updateUserProfile(data.name, data.photoURL);
-        toast.success("User created successfully");
-        navigate("/");
+        const userInfo = {
+          name: data.name,
+          email: data.email,
+        };
+
+        axiosPublic.post("/users", userInfo).then((res) => {
+          if (res.data.insertedId) {
+            reset();
+            toast.success("User created successfully");
+            navigate("/");
+          }
+        });
       } else {
         throw new Error("User creation failed");
       }
@@ -38,16 +52,19 @@ const Register = () => {
     }
   };
 
-  const handleGoogleLogin = async () => {
-    try {
-      await signInWithGoogle();
-      // navigate(from, { replace: true });
-      navigate("/");
-      toast.success("Logged in Successfully");
-    } catch (err) {
-      console.log(err);
-      toast.error(err?.message);
-    }
+  const handleGoogleLogin = () => {
+    signInWithGoogle().then((result) => {
+      console.log(result.user);
+      const userINfo = {
+        email: result.user?.email,
+        name: result.user?.displayName,
+      };
+      axiosPublic.post("/users", userINfo).then((res) => {
+        console.log(res.data);
+        navigate("/");
+        toast.success("Login Successful!");
+      });
+    });
   };
   return (
     <div>

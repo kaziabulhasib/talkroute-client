@@ -1,8 +1,17 @@
-# React + Vite
+# Talk Route
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Features:
 
-Currently, two official plugins are available:
+volume_up
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Easy registration & user profiles, organized forum structure with sub-forums, threaded discussions for in-depth conversations, powerful search with filters, content creation tools with formatting & media embedding, up/downvote system for community curation, reputation system with badges/points for valuable contributions, private messaging for direct communication, notification system for replies, mentions & messages, mobile app for on-the-go access.
+
+---
+
+Admin :
+username: admin@talkroute.com
+password: UsePassword@98
+
+---
+
+## Live Site:http://localhost:5173/

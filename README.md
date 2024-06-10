@@ -2,16 +2,24 @@
 
 ## Features:
 
-volume_up
-
-Easy registration & user profiles, organized forum structure with sub-forums, threaded discussions for in-depth conversations, powerful search with filters, content creation tools with formatting & media embedding, up/downvote system for community curation, reputation system with badges/points for valuable contributions, private messaging for direct communication, notification system for replies, mentions & messages, mobile app for on-the-go access.
+- Easy registration & user profiles
+- Organized forum structure with sub-forums
+- Threaded discussions for in-depth conversations
+- Powerful search with filters
+- Content creation tools with formatting & media embedding
+- Up/downvote system for community curation
+- Reputation system with badges/points for valuable contributions
+- Private messaging for direct communication
+- Notification system for replies, mentions & messages
+- Mobile app for on-the-go access
 
 ---
 
-Admin :
-username: admin@talkroute.com
-password: UsePassword@98
+Admin:
+
+- Username: `admin@talkroute.com`
+- Password: `UsePassword@98`
 
 ---
 
-## Live Site:http://localhost:5173/
+## Live Site: [http://localhost:5173/](http://localhost:5173/)

@@ -22,7 +22,7 @@ const Posts = ({ searchQuery }) => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await fetch("http://localhost:5000/posts");
+        const res = await fetch("https://talkroute-server.vercel.app/posts");
         if (!res.ok) {
           throw new Error("Network response was not ok");
         }
@@ -43,7 +43,7 @@ const Posts = ({ searchQuery }) => {
       if (searchQuery) {
         try {
           const res = await fetch(
-            `http://localhost:5000/posts/search?query=${searchQuery}`
+            `https://talkroute-server.vercel.app/posts/search?query=${searchQuery}`
           );
           if (!res.ok) {
             throw new Error("Network response was not ok");

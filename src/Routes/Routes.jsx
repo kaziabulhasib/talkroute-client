@@ -37,7 +37,7 @@ export const router = createBrowserRouter([
         element: <PostDetails></PostDetails>,
         loader: async ({ params }) => {
           const response = await fetch(
-            `http://localhost:5000/posts/${params.id}`
+            `https://talkroute-server.vercel.app/posts/${params.id}`
           );
           if (!response.ok) {
             throw new Error("Failed to fetch post");

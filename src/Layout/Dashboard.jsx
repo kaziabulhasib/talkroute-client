@@ -19,8 +19,8 @@ const Dashboard = () => {
       .catch((error) => console.log(error));
   };
   return (
-    <div className='flex gap-6 '>
-      <div className='w-64 min-h-screen bg-[#adabab]'>
+    <div className='flex gap-6  '>
+      <div className='w-64 pt-8 min-h-screen bg-[#adabab]'>
         <ul className='menu text-white font-medium text-xl'>
           {isAdmin ? (
             <>

@@ -110,6 +110,16 @@ const PostDetails = () => {
 
   console.log(shareUrl);
 
+  // Handle share button click
+  const handleShareClick = (e) => {
+    e.preventDefault();
+    if (!user) {
+      toast.error("Please log in to share");
+      navigate("/login");
+      return;
+    }
+  };
+
   return (
     <div>
       <Helmet>
@@ -174,7 +184,7 @@ const PostDetails = () => {
               <BiDownvote />
             </a>
 
-            <a
+            {/* <a
               rel='noopener noreferrer'
               href='#'
               aria-label='Share'
@@ -182,6 +192,20 @@ const PostDetails = () => {
               <FacebookShareButton url={shareUrl}>
                 <FaRegShareFromSquare />
               </FacebookShareButton>
+            </a> */}
+            <a
+              rel='noopener noreferrer'
+              href='#'
+              onClick={handleShareClick}
+              aria-label='Share'
+              className='p-4 rounded-md text-3xl border hover:bg-gray-700 hover:text-white'>
+              {user ? (
+                <FacebookShareButton url={shareUrl}>
+                  <FaRegShareFromSquare />
+                </FacebookShareButton>
+              ) : (
+                <FaRegShareFromSquare />
+              )}
             </a>
           </div>
         </div>

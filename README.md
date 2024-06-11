@@ -22,4 +22,4 @@ Admin:
 
 ---
 
-## Live Site: [http://localhost:5173/](http://localhost:5173/)
+## Live Site: [https://talk-route.web.app/](https://talk-route.web.app/)

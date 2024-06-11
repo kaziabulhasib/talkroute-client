@@ -19,6 +19,7 @@ import AdminProfile from "../Pages/Dashboard/AdminProfile/AdminProfile";
 import Activites from "../Pages/Dashboard/Activites/Activites";
 import MakeAnnouncement from "../Pages/Dashboard/MakeAnnouncement/MakeAnnouncement";
 import Payment from "../Pages/Dashboard/Payment/Payment";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -83,19 +84,35 @@ export const router = createBrowserRouter([
       // admin routes
       {
         path: "adminprofile",
-        element: <AdminProfile></AdminProfile>,
+        element: (
+          <AdminRoute>
+            <AdminProfile></AdminProfile>
+          </AdminRoute>
+        ),
       },
       {
         path: "users",
-        element: <AllUser></AllUser>,
+        element: (
+          <AdminRoute>
+            <AllUser></AllUser>
+          </AdminRoute>
+        ),
       },
       {
         path: "activities",
-        element: <Activites></Activites>,
+        element: (
+          <AdminRoute>
+            <Activites></Activites>
+          </AdminRoute>
+        ),
       },
       {
         path: "makeannouncement",
-        element: <MakeAnnouncement></MakeAnnouncement>,
+        element: (
+          <AdminRoute>
+            <MakeAnnouncement></MakeAnnouncement>
+          </AdminRoute>
+        ),
       },
       {
         path: "myprofile",

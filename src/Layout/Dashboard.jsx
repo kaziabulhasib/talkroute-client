@@ -1,11 +1,23 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import useAdmin from "../hooks/useAdmin";
+import toast from "react-hot-toast";
 
 const Dashboard = () => {
-  const { user } = useAuth();
-  // To do : make admin from db
+  const { user, logOut } = useAuth();
+  const navigate = useNavigate();
+  //  make admin from db
   const [isAdmin] = useAdmin();
+
+  const handleLogout = () => {
+    logOut()
+      .then((result) => {
+        console.log(result);
+        navigate("/register");
+        toast.success("Logout Successful");
+      })
+      .catch((error) => console.log(error));
+  };
   return (
     <div className='flex gap-6 '>
       <div className='w-64 min-h-screen bg-[#adabab]'>
@@ -25,6 +37,12 @@ const Dashboard = () => {
                 <NavLink to='/dashboard/makeannouncement'>
                   Make Announcement
                 </NavLink>
+              </li>
+              <li>
+                <NavLink to='/dashboard/addpost'>Add Post</NavLink>
+              </li>
+              <li>
+                <NavLink to='/dashboard/mypost'>My Post</NavLink>
               </li>
             </>
           ) : (
@@ -49,12 +67,14 @@ const Dashboard = () => {
           <li>
             <NavLink to='/'>Home</NavLink>
           </li>
-          <li>
+          {/* <li>
             <NavLink to='/'>Notification</NavLink>
-          </li>
+          </li> */}
 
           <li>
-            <button className='btn btn-sm'>Logout</button>
+            <button onClick={handleLogout} className='btn btn-sm'>
+              Logout
+            </button>
           </li>
         </ul>
       </div>

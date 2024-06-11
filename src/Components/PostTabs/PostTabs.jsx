@@ -1,37 +1,68 @@
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import { useState, useEffect } from "react";
+import { Tab, Tabs, TabList } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import PostCard from "../PostCard/PostCard";
+
 const PostTabs = () => {
+  const [posts, setPosts] = useState([]);
+  const [filteredPosts, setFilteredPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const axiosPublic = useAxiosPublic();
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const res = await axiosPublic.get("/posts");
+        setPosts(res.data);
+        setFilteredPosts(res.data); // Initially show all posts
+        setLoading(false);
+      } catch (error) {
+        console.error("Failed to fetch posts:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchPosts();
+  }, [axiosPublic]);
+
+  const filterPosts = async (tag) => {
+    try {
+      let filteredData = [];
+      if (tag === "All") {
+        // If "All" is selected, include posts from all tags
+        filteredData = posts;
+      } else {
+        const res = await axiosPublic.get(`/posts?tag=${tag}`);
+        filteredData = res.data;
+      }
+      setFilteredPosts(filteredData);
+    } catch (error) {
+      console.error("Failed to fetch filtered posts:", error);
+    }
+  };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div>
       <Tabs>
         <TabList>
-          <Tab>All</Tab>
-          <Tab>Tech</Tab>
-          <Tab>LifeStyle</Tab>
-          <Tab>Sports</Tab>
-          <Tab>Politics</Tab>
-          <Tab>Miscellaneous</Tab>
+          <Tab onClick={() => filterPosts("All")}>All</Tab>
+          <Tab onClick={() => filterPosts("Tech")}>Tech</Tab>
+          <Tab onClick={() => filterPosts("LifeStyle")}>LifeStyle</Tab>
+          <Tab onClick={() => filterPosts("Sports")}>Sports</Tab>
+          <Tab onClick={() => filterPosts("Politics")}>Politics</Tab>
+          <Tab onClick={() => filterPosts("Miscellaneous")}>Miscellaneous</Tab>
         </TabList>
-
-        <TabPanel>
-          <h2>Any content 1</h2>
-        </TabPanel>
-        <TabPanel>
-          <h2>Any content 2</h2>
-        </TabPanel>
-        <TabPanel>
-          <h2>Any content 3</h2>
-        </TabPanel>
-        <TabPanel>
-          <h2>Any content 4</h2>
-        </TabPanel>
-        <TabPanel>
-          <h2>Any content 5</h2>
-        </TabPanel>
-        <TabPanel>
-          <h2>Any content 6</h2>
-        </TabPanel>
       </Tabs>
+      <div className='grid md:grid-cols-3 grid-cols-1 gap-4 mt-6 mb-16 border text-center p-6 mx-auto'>
+        {filteredPosts.map((post) => (
+          <PostCard key={post._id} post={post}></PostCard>
+        ))}
+      </div>
     </div>
   );
 };

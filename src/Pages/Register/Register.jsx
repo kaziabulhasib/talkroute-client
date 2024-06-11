@@ -74,7 +74,7 @@ const Register = () => {
       <div className='hero min-h-screen  '>
         <div className='hero-content flex-col lg:flex-row gap-24  '>
           <div className='text-center lg:text-left  '>
-            <img src='/public/logo.png' className='w-full' alt='' />
+            <img src='/logo.png' className='w-full' alt='' />
           </div>
           <div className='card shrink-0 w-1/2 shadow-2xl bg-base-100'>
             <form onSubmit={handleSubmit(onSubmit)} className='card-body'>

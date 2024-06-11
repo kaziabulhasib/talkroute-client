@@ -1,10 +1,11 @@
 import { NavLink, Outlet } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import useAdmin from "../hooks/useAdmin";
 
 const Dashboard = () => {
   const { user } = useAuth();
   // To do : make admin from db
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
   return (
     <div className='flex gap-6 '>
       <div className='w-64 min-h-screen bg-[#adabab]'>

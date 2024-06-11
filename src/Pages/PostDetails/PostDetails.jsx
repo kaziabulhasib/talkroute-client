@@ -162,6 +162,7 @@ const PostDetails = () => {
           </div>
           <div className='flex justify-between pt-12 space-x-4 align-center'>
             <a
+              title='Make a Comment'
               rel='noopener noreferrer'
               href='#comment-section'
               aria-label='Comment'
@@ -170,6 +171,7 @@ const PostDetails = () => {
               <FaComment />
             </a>
             <a
+              title='Down Vote'
               rel='noopener noreferrer'
               href='#'
               onClick={handleUpVote}
@@ -177,6 +179,7 @@ const PostDetails = () => {
               <BiUpvote />
             </a>
             <a
+              title='Down Vote'
               onClick={handleDownVote}
               rel='noopener noreferrer'
               href='#'
@@ -184,17 +187,9 @@ const PostDetails = () => {
               <BiDownvote />
             </a>
 
-            {/* <a
-              rel='noopener noreferrer'
-              href='#'
-              aria-label='Share'
-              className='p-4 rounded-md text-3xl border hover:bg-gray-700 hover:text-white'>
-              <FacebookShareButton url={shareUrl}>
-                <FaRegShareFromSquare />
-              </FacebookShareButton>
-            </a> */}
             <a
               rel='noopener noreferrer'
+              title='Share to Facebook'
               href='#'
               onClick={handleShareClick}
               aria-label='Share'

@@ -2,10 +2,20 @@ import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import toast from "react-hot-toast";
 import { MdNotificationAdd } from "react-icons/md";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
 
 const NavBar = () => {
   const { user, logOut } = useAuth();
   const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
+  const { data: announcements = [] } = useQuery({
+    queryKey: ["users"],
+    queryFn: async () => {
+      const res = await axiosPublic.get("/announcements");
+      return res.data;
+    },
+  });
   const handleLogout = () => {
     logOut()
       .then((result) => {
@@ -27,7 +37,7 @@ const NavBar = () => {
       <li>
         <button className='btn btn-sm'>
           <MdNotificationAdd className='text-xl' />
-          <div className='badge badge-secondary'>+ 1</div>
+          <div className='badge badge-secondary '> {announcements.length}</div>
         </button>
       </li>
     </>

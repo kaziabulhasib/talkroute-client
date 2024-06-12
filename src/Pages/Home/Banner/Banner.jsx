@@ -13,24 +13,31 @@ const Banner = ({ onSearch }) => {
   const [query, setQuery] = useState("");
 
   const handleInputChange = (e) => {
-    const value = e.target.value;
-    setQuery(value);
-    onSearch(value);
+    setQuery(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSearch(query);
   };
 
   return (
     <div>
       <div className='mb-4'>
-        <label className='input max-w-sm input-bordered flex items-center gap-2'>
+        <form
+          onSubmit={handleSubmit}
+          className='input max-w-sm input-bordered flex items-center gap-2'>
           <input
             type='text'
             className='grow'
-            placeholder='Search'
+            placeholder='Search by tag'
             value={query}
             onChange={handleInputChange}
           />
-          <FaMagnifyingGlass />
-        </label>
+          <button type='submit'>
+            <FaMagnifyingGlass />
+          </button>
+        </form>
       </div>
       <Carousel
         className='top-0 h-full'
@@ -38,22 +45,22 @@ const Banner = ({ onSearch }) => {
         interval={2000}
         infiniteLoop={true}>
         <div>
-          <img className='h-full' src={banner1} />
+          <img className='h-full' src={banner1} alt='banner1' />
         </div>
         <div>
-          <img src={banner2} />
+          <img src={banner2} alt='banner2' />
         </div>
         <div>
-          <img src={banner3} />
+          <img src={banner3} alt='banner3' />
         </div>
         <div>
-          <img src={banner4} />
+          <img src={banner4} alt='banner4' />
         </div>
         <div>
-          <img src={banner5} />
+          <img src={banner5} alt='banner5' />
         </div>
         <div>
-          <img src={banner6} />
+          <img src={banner6} alt='banner6' />
         </div>
       </Carousel>
     </div>

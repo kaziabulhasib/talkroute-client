@@ -1,16 +1,15 @@
-// import { useState } from "react";
+import { useState } from "react";
 import Banner from "../Banner/Banner";
-// import Posts from "../Posts/Posts";
 import { Helmet } from "react-helmet-async";
 import PostTabs from "../../../Components/PostTabs/PostTabs";
 import Announcements from "../Announcements/Announcements";
 
 const Home = () => {
-  // const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
 
-  // const handleSearch = (query) => {
-  //   setSearchQuery(query);
-  // };
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+  };
 
   return (
     <div>
@@ -18,10 +17,9 @@ const Home = () => {
         <title>TalkRoute | Home</title>
       </Helmet>
       <div className='space-y-16 mt-16'>
-        <Banner />
-        <Announcements></Announcements>
-        <PostTabs></PostTabs>
-        {/* <Posts searchQuery={searchQuery} /> */}
+        <Banner onSearch={handleSearch} />
+        <Announcements />
+        <PostTabs searchQuery={searchQuery} />
       </div>
     </div>
   );

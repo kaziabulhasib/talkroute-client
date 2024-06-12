@@ -9,7 +9,6 @@ import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import "./styles.css";
 
-// Utility function to chunk array into smaller arrays
 const chunkArray = (array, size) => {
   const result = [];
   for (let i = 0; i < array.length; i += size) {
@@ -18,7 +17,7 @@ const chunkArray = (array, size) => {
   return result;
 };
 
-const PostTabs = () => {
+const PostTabs = ({ searchQuery }) => {
   const [posts, setPosts] = useState([]);
   const [filteredPosts, setFilteredPosts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -29,7 +28,7 @@ const PostTabs = () => {
       try {
         const res = await axiosPublic.get("/posts");
         setPosts(res.data);
-        setFilteredPosts(res.data); // Initially show all posts
+        setFilteredPosts(res.data);
         setLoading(false);
       } catch (error) {
         console.error("Failed to fetch posts:", error);
@@ -40,18 +39,28 @@ const PostTabs = () => {
     fetchPosts();
   }, [axiosPublic]);
 
-  const filterPosts = async (tag) => {
-    try {
-      let filteredData = [];
-      if (tag === "All") {
-        filteredData = posts;
-      } else {
-        const res = await axiosPublic.get(`/posts?tag=${tag}`);
-        filteredData = res.data;
+  useEffect(() => {
+    const fetchFilteredPosts = async () => {
+      if (!searchQuery) {
+        setFilteredPosts(posts);
+        return;
       }
-      setFilteredPosts(filteredData);
-    } catch (error) {
-      console.error("Failed to fetch filtered posts:", error);
+      try {
+        const res = await axiosPublic.get(`/posts/search?query=${searchQuery}`);
+        setFilteredPosts(res.data);
+      } catch (error) {
+        console.error("Failed to fetch filtered posts:", error);
+      }
+    };
+
+    fetchFilteredPosts();
+  }, [searchQuery, axiosPublic, posts]);
+
+  const filterPosts = (tag) => {
+    if (tag === "All") {
+      setFilteredPosts(posts);
+    } else {
+      setFilteredPosts(posts.filter((post) => post.postTag === tag));
     }
   };
 

@@ -3,6 +3,20 @@ import { Tab, Tabs, TabList } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import PostCard from "../PostCard/PostCard";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Pagination } from "swiper/modules";
+import "./styles.css";
+
+// Utility function to chunk array into smaller arrays
+const chunkArray = (array, size) => {
+  const result = [];
+  for (let i = 0; i < array.length; i += size) {
+    result.push(array.slice(i, i + size));
+  }
+  return result;
+};
 
 const PostTabs = () => {
   const [posts, setPosts] = useState([]);
@@ -30,7 +44,6 @@ const PostTabs = () => {
     try {
       let filteredData = [];
       if (tag === "All") {
-        // If "All" is selected, include posts from all tags
         filteredData = posts;
       } else {
         const res = await axiosPublic.get(`/posts?tag=${tag}`);
@@ -42,9 +55,18 @@ const PostTabs = () => {
     }
   };
 
+  const chunkedPosts = chunkArray(filteredPosts, 5);
+
   if (loading) {
     return <div>Loading...</div>;
   }
+
+  const pagination = {
+    clickable: true,
+    renderBullet: function (index, className) {
+      return '<span class="' + className + '">' + (index + 1) + "</span>";
+    },
+  };
 
   return (
     <div>
@@ -58,11 +80,17 @@ const PostTabs = () => {
           <Tab onClick={() => filterPosts("Miscellaneous")}>Miscellaneous</Tab>
         </TabList>
       </Tabs>
-      <div className='grid md:grid-cols-3 grid-cols-1 gap-4 mt-6 mb-16 border text-center p-6 mx-auto'>
-        {filteredPosts.map((post) => (
-          <PostCard key={post._id} post={post}></PostCard>
+      <Swiper pagination={pagination} modules={[Pagination]} slidesPerView={1}>
+        {chunkedPosts.map((chunk, index) => (
+          <SwiperSlide key={index}>
+            <div className='grid md:grid-cols-3 grid-cols-1 gap-4 mt-6 mb-16 border text-center p-6 mx-auto'>
+              {chunk.map((post) => (
+                <PostCard key={post._id} post={post}></PostCard>
+              ))}
+            </div>
+          </SwiperSlide>
         ))}
-      </div>
+      </Swiper>
     </div>
   );
 };

@@ -78,7 +78,9 @@ const PostCard = ({ post }) => {
           </div>
         </article>
         <div>
-          <h1>#{postTag}</h1>
+          <h1 className='bg-gray-700 text-white text-center px-2 py-2 w-2/3 mx-auto font-semibold rounded-md text-xl tracking-widest'>
+            #{postTag}
+          </h1>
         </div>
       </div>
     </div>

@@ -47,7 +47,7 @@ const MakeAnnouncement = () => {
         <title>TalkRoute | Announcement</title>
       </Helmet>
       <div>
-        <h1 className='lg:text-3xl text-xl text-center font-semibold my-16 text-gray-700'>
+        <h1 className='lg:text-3xl  text-xl text-center font-semibold my-16 text-gray-700'>
           Post an Announcement
         </h1>
         <form

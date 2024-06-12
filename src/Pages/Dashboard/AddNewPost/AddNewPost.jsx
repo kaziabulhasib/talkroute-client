@@ -119,7 +119,7 @@ const AddNewPost = () => {
             </span>
 
             <textarea
-              placeholder='Post Description'
+              placeholder='description'
               className='textarea  textarea-bordered textarea-lg w-full '
               name='postDescription'></textarea>
           </label>

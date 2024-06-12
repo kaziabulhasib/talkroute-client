@@ -19,9 +19,9 @@ const Dashboard = () => {
       .catch((error) => console.log(error));
   };
   return (
-    <div className='flex gap-6  '>
-      <div className='lg:w-64 pt-8 min-h-screen bg-[#adabab]'>
-        <ul className='menu text-white font-medium text-xl'>
+    <div className='flex lg:gap-6 gap-2 '>
+      <div className='lg:w-64 w-40 pt-8 min-h-screen bg-[#adabab]'>
+        <ul className='menu text-white font-medium lg:text-xl'>
           {isAdmin ? (
             <>
               <li>

@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { FaTrash, FaUsers } from "react-icons/fa6";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const AllUser = () => {
   const axiosSecure = useAxiosSecure();
@@ -32,8 +33,11 @@ const AllUser = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>TalkRoute | Manage Users</title>
+      </Helmet>
       <div className='mx-16'>
-        <h1>Total Users: {users.length}</h1>
+        {/* <h1>Total Users: {users.length}</h1> */}
         <div className='overflow-x-auto'>
           <table className='table table-zebra'>
             {/* head */}

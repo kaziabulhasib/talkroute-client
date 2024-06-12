@@ -59,7 +59,7 @@ const PostCard = ({ post }) => {
               title={postTitle}>
               {limitedTitle}
             </h1>
-            <div className='flex lg:flex-row flex-col   lg:items-center justify-between w-full   '>
+            <div className='flex text-left lg:flex-row flex-col   lg:items-center justify-between w-full   '>
               {/* Author image */}
               <div className='flex items-center md:space-x-2'>
                 •

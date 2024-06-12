@@ -8,8 +8,8 @@ const Error = () => {
           <h1 className='text-9xl text-red-500 font-bold leading-none text-center'>
             404
           </h1>
-          <p className='text-xl w-2/3 mx-auto font-medium border rounded-sm py-4  px-16 '>
-            Uh oh! Looks like you/'/ve reached a broken page. The content you
+          <p className='text-xl w-2/3 mx-auto font-medium border rounded-sm py-4  lg:px-16 '>
+            Uh oh! Looks like you've reached a broken page. The content you
             requested might have moved or simply be missing. Don't worry, we've
             all been there. Check out the url to find what you're looking for,
             or head back to the homepage to get started fresh.

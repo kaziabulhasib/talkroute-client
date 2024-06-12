@@ -1,7 +1,7 @@
 const Activites = () => {
   return (
     <div>
-      <h1>Make Announcement</h1>
+      <h1>Activites Coming Sooon......</h1>
     </div>
   );
 };

@@ -77,8 +77,22 @@ const PostTabs = ({ searchQuery }) => {
     },
   };
 
+  const sortByPopularity = () => {
+    const sortedPosts = [...filteredPosts].sort((a, b) => {
+      const voteDifferenceA = a.upVote - a.downVote;
+      const voteDifferenceB = b.upVote - b.downVote;
+      return voteDifferenceB - voteDifferenceA;
+    });
+    setFilteredPosts(sortedPosts);
+  };
+
   return (
     <div>
+      <button
+        onClick={sortByPopularity}
+        className='btn btn-outline font-medium text-xl  mb-8'>
+        Sort by Popularity
+      </button>
       <Tabs>
         <TabList>
           <Tab onClick={() => filterPosts("All")}>All</Tab>

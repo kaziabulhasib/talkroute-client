@@ -27,10 +27,10 @@ const Announcements = () => {
 
   return (
     <div>
-      <h1 className='text-3xl text-center font-semibold text-gray-700 mb-12'>
+      <h1 className='lg:text-3xl text-xl text-center font-semibold text-gray-700 mb-12'>
         Announcement
       </h1>
-      <div className='overflow-x-auto my-8 mx-8'>
+      <div className='overflow-x-auto my-8 lg:mx-8'>
         <table className='table table-zebra'>
           {/* head */}
           <thead>

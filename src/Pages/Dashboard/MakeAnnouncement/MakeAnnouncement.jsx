@@ -47,7 +47,7 @@ const MakeAnnouncement = () => {
         <title>TalkRoute | Announcement</title>
       </Helmet>
       <div>
-        <h1 className='text-3xl text-center font-semibold my-16 text-gray-700'>
+        <h1 className='lg:text-3xl text-xl text-center font-semibold my-16 text-gray-700'>
           Post an Announcement
         </h1>
         <form
@@ -73,7 +73,7 @@ const MakeAnnouncement = () => {
             />
           </label>
 
-          <div className='flex gap-4 '>
+          <div className='flex flex-col lg:flex-row gap-4 '>
             {/* Name */}
             <label className='form-control w-full my-4 '>
               <span className='label-text my-4 text-xl font-semibold'>

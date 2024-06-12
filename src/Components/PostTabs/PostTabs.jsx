@@ -90,7 +90,7 @@ const PostTabs = ({ searchQuery }) => {
     <div>
       <button
         onClick={sortByPopularity}
-        className='btn btn-outline font-medium text-xl  mb-8'>
+        className='btn btn-outline font-medium text-xl  mb-8 lg:ml-1 ml-4'>
         Sort by Popularity
       </button>
       <Tabs>

@@ -72,11 +72,11 @@ const Register = () => {
         <title>TalkRoute | Register</title>
       </Helmet>
       <div className='hero min-h-screen  '>
-        <div className='hero-content flex-col lg:flex-row gap-24  '>
+        <div className='hero-content flex-col lg:flex-row lg:gap-24 gap-4  '>
           <div className='text-center lg:text-left  '>
             <img src='/logo.png' className='w-full' alt='' />
           </div>
-          <div className='card shrink-0 w-1/2 shadow-2xl bg-base-100'>
+          <div className='card shrink-0 lg:w-1/2 w-full shadow-2xl bg-base-100'>
             <form onSubmit={handleSubmit(onSubmit)} className='card-body'>
               <div className='form-control'>
                 <label className='label'>

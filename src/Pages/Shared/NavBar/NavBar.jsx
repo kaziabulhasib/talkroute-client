@@ -43,7 +43,7 @@ const NavBar = () => {
     </>
   );
   return (
-    <div className='navbar bg-base-100 px-36'>
+    <div className='navbar bg-base-100 lg:px-36'>
       <div className='navbar-start'>
         <div className='dropdown'>
           <div tabIndex={0} role='button' className='btn btn-ghost lg:hidden'>
@@ -81,7 +81,7 @@ const NavBar = () => {
         </ul>
       </div>
 
-      <div className='navbar-end'>
+      <div className='navbar-end ml-6'>
         {/* <a className='btn'>Logout</a> */}
         {user ? (
           <>

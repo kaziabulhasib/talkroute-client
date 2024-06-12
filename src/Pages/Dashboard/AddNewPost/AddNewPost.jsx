@@ -80,7 +80,7 @@ const AddNewPost = () => {
             />
           </label>
 
-          <div className='flex gap-4 '>
+          <div className='flex lg:flex-row flex-col gap-4 '>
             {/* Name */}
             <label className='form-control w-full my-4 '>
               <span className='label-text my-4 text-xl font-semibold'>
@@ -142,7 +142,7 @@ const AddNewPost = () => {
             </select>
           </label>
           {/* upvote & down vote  */}
-          <div className='flex gap-4 '>
+          <div className='flex lg:flex-row flex-col gap-4 '>
             <label className='form-control w-full my-4 '>
               <span className='label-text my-4 text-xl font-semibold'>
                 Up Vote

@@ -59,20 +59,21 @@ const PostCard = ({ post }) => {
               title={postTitle}>
               {limitedTitle}
             </h1>
-            <div className='flex flex-col items-start justify-between w-full md:flex-row md:items-center '>
+            <div className='flex lg:flex-row flex-col   lg:items-center justify-between w-full   '>
               {/* Author image */}
               <div className='flex items-center md:space-x-2'>
+                •
                 <img
                   src={authorImage}
                   alt=''
-                  className='w-12 h-12 border rounded-full '
+                  className='lg:w-12 lg:h-12 w-6 h-6 border rounded-full '
                 />
                 {/* Time */}
                 <p className='text-sm'>• {formatPostTime(postTime)}</p>
               </div>
               {/* votes & comments count */}
               <p className='flex-shrink-0 mt-3 text-sm md:mt-0'>
-                • {commentCount || 0} comments • {upVote + downVote} votes
+                • {commentCount || 0} comments • {upVote + downVote} votes •
               </p>
             </div>
           </div>

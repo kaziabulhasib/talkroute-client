@@ -59,13 +59,13 @@ const MyPost = () => {
       <Helmet>
         <title>TalkRoute | MyPost</title>
       </Helmet>
-      <div className='px-24 my-16'>
+      <div className='lg:px-24 px-2 lg:my-16 my-2'>
         <h1 className='text-4xl text-center '>Total Posts : {posts.length}</h1>
         <div>
           {posts.length > 0 ? (
-            <div className='overflow-x-auto my-14 border'>
+            <div className='overflow-x-auto lg:my-14 my-2 border'>
               <table className='table table-xs table-pin-rows table-pin-cols'>
-                <thead className='text-xl '>
+                <thead className='lg:text-xl text-base '>
                   <tr>
                     <th></th>
                     <td>Post Title</td>
@@ -77,9 +77,14 @@ const MyPost = () => {
                 <tbody className=''>
                   {posts.map((post, index) => (
                     <tr className='text-2xl ' key={post._id}>
-                      <th className='py-4 text-[18px]'>{index + 1}</th>
-                      <td className='py-4 text-[18px]'>{post.postTitle}</td>
-                      <td className='py-4 text-[18px]'>
+                      <th className='py-4 lg:text-[18px] text-base'>
+                        {index + 1}
+                      </th>
+
+                      <td className='py-4 w-full lg:text-[18px] text-base'>
+                        {post.postTitle}
+                      </td>
+                      <td className='py-4 lg:text-[18px] text-base'>
                         {post.upVote + post.downVote}
                       </td>
                       <td className='py-4'>

@@ -20,7 +20,7 @@ const Dashboard = () => {
   };
   return (
     <div className='flex gap-6  '>
-      <div className='w-64 pt-8 min-h-screen bg-[#adabab]'>
+      <div className='lg:w-64 pt-8 min-h-screen bg-[#adabab]'>
         <ul className='menu text-white font-medium text-xl'>
           {isAdmin ? (
             <>

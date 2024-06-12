@@ -59,7 +59,7 @@ const Login = () => {
           <div className='text-center lg:text-left  '>
             <img src='/logo.png' className='w-full' alt='' />
           </div>
-          <div className='card shrink-0 w-1/2 shadow-2xl bg-base-100'>
+          <div className='card shrink-0 lg:w-1/2 w-full  shadow-2xl bg-base-100'>
             <form onSubmit={handleLogin} className='card-body'>
               <div className='form-control'>
                 <label className='label'>

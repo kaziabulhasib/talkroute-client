@@ -26,7 +26,7 @@ const Banner = ({ onSearch }) => {
       <div className='mb-4'>
         <form
           onSubmit={handleSubmit}
-          className='input max-w-sm input-bordered flex items-center gap-2'>
+          className='input max-w-[250px] lg:max-w-sm input-bordered flex items-center gap-2 ml-4 lg:ml-1'>
           <input
             type='text'
             className='grow'

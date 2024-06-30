@@ -89,6 +89,8 @@ const NavBar = () => {
               <label tabIndex={0}>
                 <div className=''>
                   <img
+                    referrerPolicy='no-referrer'
+                    alt='User Profile Picture'
                     className='w-16 h-16 rounded-full border-2 bg-white p-1 border-slate-600'
                     src={
                       user?.photoURL ||

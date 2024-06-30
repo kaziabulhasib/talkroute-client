@@ -5,7 +5,7 @@ const usePost = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://talkroute-server.vercel.app/posts")
+    fetch("http://localhost:5000/posts")
       .then((res) => res.json())
       .then((data) => {
         setPosts(data);

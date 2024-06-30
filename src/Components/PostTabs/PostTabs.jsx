@@ -64,7 +64,7 @@ const PostTabs = ({ searchQuery }) => {
     }
   };
 
-  const chunkedPosts = chunkArray(filteredPosts, 5);
+  const chunkedPosts = chunkArray(filteredPosts, 6);
 
   if (loading) {
     return <div>Loading...</div>;

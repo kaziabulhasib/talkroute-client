@@ -39,7 +39,7 @@ const PostCard = ({ post }) => {
   };
   // limiting title length
 
-  const maxLength = 80;
+  const maxLength = 50;
   const ending = "...";
 
   const limitedTitle =
@@ -50,12 +50,13 @@ const PostCard = ({ post }) => {
     <div>
       <div
         onClick={handleClick}
-        className='p-6 mx-auto space-y-12 border rounded-lg hover:cursor-pointer h-[375px]'>
+        className='p-6 mx-auto space-y-12 border rounded-lg hover:cursor-pointer  h-[375px]'>
         <article className='space-y-8 '>
           <div className='space-y-6'>
             {/* post title */}
+
             <h1
-              className='text-xl font-bold md:text-2xl text-left'
+              className='text-xl font-bold md:text-2xl text-left h-24 '
               title={postTitle}>
               {limitedTitle}
             </h1>

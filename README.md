@@ -1,24 +1,19 @@
 # Talk Route
+## overview: Talkroute is a community forum website that enables users to post, read, and comment on a wide range of topics. We utilize upvote and downvote features to highlight the most relevant and popular content. Our platform includes a user dashboard for adding posts and tracking personal contributions. Additionally, we offer exclusive features available through a nominal monthly subscription, enhancing the user experience and providing premium functionalities.
+
+## Technology used: HTML, Tailwind, React, Express, Mongodb, React Query , Firebase-auth, Stripe
 
 ## Features:
 
 - Easy registration & user profiles
-- Organized forum structure with sub-forums
-- Threaded discussions for in-depth conversations
 - Powerful search with filters
-- Content creation tools with formatting & media embedding
 - Up/downvote system for community curation
-- Reputation system with badges/points for valuable contributions
-- Private messaging for direct communication
-- Notification system for replies, mentions & messages
-- Mobile app for on-the-go access
+
+
 
 ---
 
-Admin:
 
-- Username: `admin@talkroute.com`
-- Password: `UsePassword@98`
 
 ---
 

@@ -22,6 +22,7 @@
 
 
 ---
+## if you clone this project  run npm i for installting required packages
 
 
 ## Server repo: https://github.com/kaziabulhasib/talkroute-server

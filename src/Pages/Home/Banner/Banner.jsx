@@ -26,15 +26,15 @@ const Banner = ({ onSearch }) => {
       <div className='mb-4'>
         <form
           onSubmit={handleSubmit}
-          className='  flex justify-end gap-2 ml-4 lg:ml-1'>
+          className=' relative flex justify-end gap-2 ml-4 lg:ml-1'>
           <input
             type='text'
-            className=' input  input-bordered grow max-w-[250px] lg:max-w-sm'
+            className='  input  input-bordered grow max-w-[250px] lg:max-w-sm'
             placeholder='Search by tag'
             value={query}
             onChange={handleInputChange}
           />
-          <button type='submit'>
+          <button className='absolute top-4 right-4' type='submit'>
             <FaMagnifyingGlass />
           </button>
         </form>

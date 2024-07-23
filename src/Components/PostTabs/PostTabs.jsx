@@ -106,7 +106,7 @@ const PostTabs = ({ searchQuery }) => {
       <Swiper pagination={pagination} modules={[Pagination]} slidesPerView={1}>
         {chunkedPosts.map((chunk, index) => (
           <SwiperSlide key={index}>
-            <div className='grid md:grid-cols-3 grid-cols-1 gap-4 mt-6 mb-16 border text-center p-6 mx-auto'>
+            <div className='grid md:grid-cols-3 grid-cols-1 gap-4 mt-6 mb-16  text-center p-6 mx-auto'>
               {chunk.map((post) => (
                 <PostCard key={post._id} post={post}></PostCard>
               ))}

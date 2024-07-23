@@ -50,22 +50,36 @@ const PostCard = ({ post }) => {
     <div>
       <div
         onClick={handleClick}
-        className='p-6 mx-auto space-y-12 border rounded-lg hover:cursor-pointer  '>
+        className='relative p-6 mx-auto bg-white hover:bg-slate-50 drop-shadow rounded-lg  space-y-8    hover:cursor-pointer mb-4 mr-4 '>
+        <button className='btn btn-xs bg-blue-500 hover:bg-blue-600 text-white text-sm absolute top-2 right-2 '>
+          {postTag}
+        </button>
         <article className='space-y-8 '>
           <div className='space-y-6'>
             {/* post title */}
 
-            <div id='my-anchor-element' data-tooltip-content={postTitle}>
+            <a
+              id='my-anchor-element'
+              data-tooltip-content={postTitle}
+              data-tooltip-variant='info'>
               {" "}
               <h1
-                className='text-xl font-bold md:text-2xl text-left h-16 '
+                className='text-xl font-bold md:text-2xl text-left h-16 text-gray-700 '
                 // title={postTitle}
               >
                 {limitedTitle}
               </h1>
-            </div>
+            </a>
 
-            <Tooltip anchorSelect='#my-anchor-element' />
+            <Tooltip
+              // style={{
+              //   backgroundColor: "#304463",
+              //   color: "#ffff",
+              //   fontWeight: "bold",
+              //
+              // }}
+              anchorSelect='#my-anchor-element'
+            />
             <div>
               {/* Author image */}
               <div className='flex justify-between   items-center md:space-x-2'>
@@ -78,23 +92,17 @@ const PostCard = ({ post }) => {
                   />
                   <h1 className='text-blue-700 underline '>{authorName}</h1>
                 </div>
+                {/* to do  */}
                 {/* Time */}
                 <p className='text-sm text-blue-950'>
                   {" "}
                   {formatPostTime(postTime)}
                 </p>
               </div>
-              {/* votes & comments count */}
-              {/* <p className='flex-shrink-0 mt-3 text-sm md:mt-0'>
-                • {commentCount || 0} comments • {upVote + downVote} votes •
-              </p> */}
             </div>
           </div>
         </article>
-        <div className='flex items-center  justify-evenly gap-2 border p-2 '>
-          <h1 className='  text-center    font-semibold rounded-md text-xl tracking-widest'>
-            #{postTag}
-          </h1>
+        <div className='flex items-center  justify-evenly gap-2  p-2 '>
           {/* votes & comments count */}
           <p className='flex-shrink-0 mt-3  md:mt-0'>
             {commentCount || 0} comments • {upVote + downVote} votes

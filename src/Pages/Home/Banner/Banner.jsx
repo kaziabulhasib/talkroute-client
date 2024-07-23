@@ -26,10 +26,10 @@ const Banner = ({ onSearch }) => {
       <div className='mb-4'>
         <form
           onSubmit={handleSubmit}
-          className='input max-w-[250px] lg:max-w-sm input-bordered flex items-center gap-2 ml-4 lg:ml-1'>
+          className='  flex justify-end gap-2 ml-4 lg:ml-1'>
           <input
             type='text'
-            className='grow'
+            className=' input  input-bordered grow max-w-[250px] lg:max-w-sm'
             placeholder='Search by tag'
             value={query}
             onChange={handleInputChange}

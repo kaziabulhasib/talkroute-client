@@ -72,12 +72,11 @@ const PostCard = ({ post }) => {
             </a>
 
             <Tooltip
-              // style={{
-              //   backgroundColor: "#304463",
-              //   color: "#ffff",
-              //   fontWeight: "bold",
-              //
-              // }}
+              style={{
+                backgroundColor: "#304463",
+                color: "#ffff",
+                fontWeight: "medium",
+              }}
               anchorSelect='#my-anchor-element'
             />
             <div>

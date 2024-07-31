@@ -43,7 +43,7 @@ const NavBar = () => {
     </>
   );
   return (
-    <div className='navbar bg-base-100 lg:px-36'>
+    <div className='navbar bg-base-100 lg:px-36 fixed top-0 z-10 opacity-9'>
       <div className='navbar-start'>
         <div className='dropdown'>
           <div tabIndex={0} role='button' className='btn btn-ghost lg:hidden'>
@@ -68,9 +68,7 @@ const NavBar = () => {
           </ul>
         </div>
 
-        <Link
-          to='/'
-          className='flex justify-center items-center gap-4 btn btn-ghost'>
+        <Link to='/' className='flex justify-center items-center gap-4 '>
           <img src='/logo.png' alt='' className='w-12 h-12 ' />
           <p className='text-2xl font-bold'>TalkRoute</p>
         </Link>
@@ -91,7 +89,7 @@ const NavBar = () => {
                   <img
                     referrerPolicy='no-referrer'
                     alt='User Profile Picture'
-                    className='w-16 h-16 rounded-full border-2 bg-white p-1 border-slate-600'
+                    className='w-14 h-14 rounded-full border-2 bg-white p-1 border-slate-600'
                     src={
                       user?.photoURL ||
                       "https://i.ibb.co/K6n8jh8/Profile-Male-PNG.png"

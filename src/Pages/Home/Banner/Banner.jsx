@@ -22,8 +22,8 @@ const Banner = ({ onSearch }) => {
   };
 
   return (
-    <div>
-      <div className='mb-4'>
+    <div className='mb-8 mt-36'>
+      {/* <div className='mb-4 mt-24'>
         <form
           onSubmit={handleSubmit}
           className=' relative flex justify-end gap-2 ml-4 lg:ml-1'>
@@ -38,7 +38,7 @@ const Banner = ({ onSearch }) => {
             <FaMagnifyingGlass />
           </button>
         </form>
-      </div>
+      </div> */}
       <Carousel
         className='top-0 h-full'
         autoPlay={true}

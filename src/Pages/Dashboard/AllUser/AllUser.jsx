@@ -63,9 +63,10 @@ const AllUser = () => {
                       // <FaUsers
                       //   // onClick={() => handleMakeAdmin(user)}
                       //   className='bg-yellow-600 text-4xl text-white p-2 cursor-pointer '></FaUsers>
+
                       <button
                         onClick={() => handleMakeAdmin(user)}
-                        className='btn btn-sm btn-ghost font-medium '>
+                        className='btn btn-sm btn-outline font-medium  '>
                         Make Admin
                       </button>
                     )}

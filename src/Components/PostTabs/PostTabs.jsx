@@ -67,7 +67,7 @@ const PostTabs = ({ searchQuery }) => {
   const chunkedPosts = chunkArray(filteredPosts, 6);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <span className='loading loading-bars loading-md'></span>;
   }
 
   const pagination = {

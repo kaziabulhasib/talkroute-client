@@ -50,7 +50,7 @@ const PostCard = ({ post }) => {
     <div>
       <div
         onClick={handleClick}
-        className='relative p-6 mx-auto bg-white hover:bg-slate-50 drop-shadow rounded-lg  space-y-8    hover:cursor-pointer mb-4 mr-4 '>
+        className='relative p-6 mx-auto bg-base-100 hover:bg-base-200 drop-shadow rounded-lg  space-y-8    hover:cursor-pointer mb-4 mr-4 '>
         <button className='btn btn-xs bg-blue-500 hover:bg-blue-600 text-white text-sm absolute top-2 right-2 '>
           {postTag}
         </button>

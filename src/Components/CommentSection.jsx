@@ -43,7 +43,9 @@ const CommentSection = ({ postTitle, commentTextAreaRef, postId }) => {
       <form onSubmit={handleCommentSubmit}>
         <textarea
           name='comment'
-          placeholder='Write a comment...'
+          placeholder={
+            user ? `Comment from ${user?.email}` : "Log in to comment"
+          }
           className='textarea textarea-bordered textarea-lg w-full mb-4'
           ref={commentTextAreaRef}></textarea>
 

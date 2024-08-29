@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import banner5 from "../../../assets/home/01.jpg";
@@ -7,19 +7,19 @@ import banner3 from "../../../assets/home/03.jpg";
 import banner4 from "../../../assets/home/04.jpg";
 import banner1 from "../../../assets/home/05.png";
 import banner6 from "../../../assets/home/06.png";
-import { FaMagnifyingGlass } from "react-icons/fa6";
+// import { FaMagnifyingGlass } from "react-icons/fa6";
 
 const Banner = ({ onSearch }) => {
-  const [query, setQuery] = useState("");
+  // const [query, setQuery] = useState("");
 
-  const handleInputChange = (e) => {
-    setQuery(e.target.value);
-  };
+  // const handleInputChange = (e) => {
+  //   setQuery(e.target.value);
+  // };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSearch(query);
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   onSearch(query);
+  // };
 
   return (
     <div className='mb-8 mt-36'>
@@ -44,23 +44,23 @@ const Banner = ({ onSearch }) => {
         autoPlay={true}
         interval={2000}
         infiniteLoop={true}>
-        <div>
+        <div className='h-[90%]'>
           <img className='h-full' src={banner1} alt='banner1' />
         </div>
-        <div>
-          <img src={banner2} alt='banner2' />
+        <div className='h-[90%]'>
+          <img className='h-full' src={banner2} alt='banner2' />
         </div>
-        <div>
-          <img src={banner3} alt='banner3' />
+        <div className='h-[90%]'>
+          <img className='h-full' src={banner3} alt='banner3' />
         </div>
-        <div>
-          <img src={banner4} alt='banner4' />
+        <div className='h-[90%]'>
+          <img className='h-full' src={banner4} alt='banner4' />
         </div>
-        <div>
-          <img src={banner5} alt='banner5' />
+        <div className='h-[90%]'>
+          <img className='h-full' src={banner5} alt='banner5' />
         </div>
-        <div>
-          <img src={banner6} alt='banner6' />
+        <div className='h-[90%]'>
+          <img className='h-full' src={banner6} alt='banner6' />
         </div>
       </Carousel>
     </div>

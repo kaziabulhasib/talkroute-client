@@ -1,20 +1,21 @@
 import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
 import useAxiosSecure from "../hooks/useAxiosSecure";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 const CommentSection = ({ postTitle, commentTextAreaRef, postId }) => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
 
     if (!user) {
       toast.error("please Login to comment");
-      navigate("/login");
+      navigate("/login", { state: location.pathname });
       return;
     }
     const comment = e.target.comment.value;

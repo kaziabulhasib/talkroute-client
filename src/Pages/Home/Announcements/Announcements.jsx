@@ -49,7 +49,7 @@ const Announcements = () => {
                   <img
                     src={announcement.authorImage}
                     alt='author-image'
-                    className='w-8 h-8'
+                    className='w-8 h-8 rounded-full'
                   />
                 </th>
                 <td>{announcement.authorName}</td>

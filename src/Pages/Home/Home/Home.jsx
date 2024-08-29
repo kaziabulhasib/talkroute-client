@@ -18,7 +18,7 @@ const Home = () => {
       </Helmet>
       <div className='space-y-16 mt-16'>
         <Banner onSearch={handleSearch} />
-        <Announcements />
+        {/* <Announcements /> */}
         <PostTabs searchQuery={searchQuery} />
       </div>
     </div>

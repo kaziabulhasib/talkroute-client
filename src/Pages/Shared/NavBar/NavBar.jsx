@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { MdNotificationAdd } from "react-icons/md";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
+import Notimodal from "../../../Components/notimodal/Notimodal";
 
 const NavBar = () => {
   const { user, logOut } = useAuth();
@@ -33,17 +34,21 @@ const NavBar = () => {
       <li>
         <Link to='/membership'>Membership</Link>
       </li>
-
+      {/*
       <li>
         <button className='btn btn-sm'>
           <MdNotificationAdd className='text-xl' />
           <div className='badge badge-secondary '> {announcements.length}</div>
         </button>
       </li>
+  */}
+      <li>
+        <Notimodal announcements={announcements} />
+      </li>
     </>
   );
   return (
-    <div className='navbar bg-base-100 lg:px-36 fixed top-0 z-10 opacity-9  shadow'>
+    <div className='navbar bg-gray-100 lg:px-36 fixed top-0 z-10 opacity-90  shadow'>
       <div className='navbar-start'>
         <div className='dropdown'>
           <div tabIndex={0} role='button' className='btn btn-ghost lg:hidden'>

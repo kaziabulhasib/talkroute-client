@@ -1,5 +1,5 @@
 import { FcGoogle } from "react-icons/fc";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 // import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import { useContext } from "react";
@@ -7,7 +7,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { Helmet } from "react-helmet-async";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 
-const from = location.state?.from?.pathname || "/";
+// const from = location.state?.from?.pathname || "/";
 console.log("state in the location:", location.state);
 
 const Login = () => {
@@ -16,6 +16,8 @@ const Login = () => {
   const axiosPublic = useAxiosPublic();
 
   const navigate = useNavigate();
+  const location = useLocation();
+  console.log(location);
 
   // login
   const handleLogin = (e) => {
@@ -30,7 +32,7 @@ const Login = () => {
       console.log(user);
 
       toast.success("Signin Successful");
-      navigate(from, { replace: true });
+      navigate(location?.state ? location?.state : "/");
     });
   };
 
@@ -44,7 +46,7 @@ const Login = () => {
       };
       axiosPublic.post("/users", userINfo).then((res) => {
         console.log(res.data);
-        navigate("/");
+        navigate(location?.pathname ? location?.pathname : "/");
         toast.success("Login Successful!");
       });
     });

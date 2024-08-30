@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { Tooltip } from "react-tooltip";
 
 const Announcements = () => {
   const axiosPublic = useAxiosPublic();
@@ -45,12 +46,36 @@ const Announcements = () => {
                 </th>
                 <td>{announcement.authorName}</td>
                 <td>{announcement.title}</td>
-                <td title={announcement.description}>
+                {/* <td title={announcement.description}>
                   {announcement.description.substring(0, 100)}
                   {announcement.description.length > 100 && (
                     <span>........</span>
                   )}
-                </td>
+                </td> */}
+                <a
+                  id='my-anchor-element'
+                  data-tooltip-content={announcement.description}
+                  data-tooltip-variant='info'>
+                  {" "}
+                  <td>
+                    {announcement.description.substring(0, 100)}
+                    {announcement.description.length > 100 && (
+                      <span>........</span>
+                    )}
+                  </td>
+                </a>
+                <Tooltip
+                  style={{
+                    backgroundColor: "#304463",
+                    color: "#ffff",
+                    fontWeight: "medium",
+                    width: "auto",
+                    height: "auto",
+                    // padding: "16px",
+                    textAlign: "center",
+                  }}
+                  anchorSelect='#my-anchor-element'
+                />
               </tr>
             ))}
           </tbody>

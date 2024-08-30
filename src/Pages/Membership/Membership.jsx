@@ -8,12 +8,12 @@ const Membership = () => {
         <title>TalkRoute | MemberShip</title>
       </Helmet>
       <div>
-        <section className='py-12 mt-16 bg-gray-100 text-gray-900'>
+        <section className='py-12 mt-24 bg-gray-100 text-gray-900'>
           <div className='container mx-auto flex flex-col items-center justify-center p-4 space-y-8 md:p-10 md:px-24 xl:px-48'>
             <h1 className='lg:text-5xl text-3xl font-bold leading-none text-center'>
               Become Member Now
             </h1>
-            <p className='text-xl w-2/3 mx-auto font-medium border rounded-sm py-4  lg:px-16 '>
+            <p className='text-xl lg:w-2/3 w-full mx-auto font-medium border rounded-sm py-4  lg:px-16 px-6 '>
               Love to hear your thoughts! Become a member for just $5 a month
               and unlock unlimited posting. Free users get 5 posts, but for
               in-depth discussions and sharing your full story, a membership is

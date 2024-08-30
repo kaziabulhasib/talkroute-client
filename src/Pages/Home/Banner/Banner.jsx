@@ -44,22 +44,22 @@ const Banner = ({ onSearch }) => {
         autoPlay={true}
         interval={2000}
         infiniteLoop={true}>
-        <div className='h-[90%]'>
+        <div className='h-full'>
           <img className='h-full' src={banner1} alt='banner1' />
         </div>
-        <div className='h-[90%]'>
+        <div className='h-full'>
           <img className='h-full' src={banner2} alt='banner2' />
         </div>
-        <div className='h-[90%]'>
+        <div className='h-full'>
           <img className='h-full' src={banner3} alt='banner3' />
         </div>
-        <div className='h-[90%]'>
+        <div className='h-full'>
           <img className='h-full' src={banner4} alt='banner4' />
         </div>
-        <div className='h-[90%]'>
+        <div className='h-full'>
           <img className='h-full' src={banner5} alt='banner5' />
         </div>
-        <div className='h-[90%]'>
+        <div className='h-full'>
           <img className='h-full' src={banner6} alt='banner6' />
         </div>
       </Carousel>

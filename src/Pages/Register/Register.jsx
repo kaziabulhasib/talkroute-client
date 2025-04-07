@@ -6,6 +6,8 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 import { Helmet } from "react-helmet-async";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { useState } from "react";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 const Register = () => {
   const { signInWithGoogle, createUser, updateUserProfile } = useAuth();
@@ -18,6 +20,8 @@ const Register = () => {
     formState: { errors },
     reset,
   } = useForm();
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const onSubmit = async (data) => {
     try {
@@ -66,14 +70,15 @@ const Register = () => {
       });
     });
   };
+
   return (
     <div>
       <Helmet>
         <title>TalkRoute | Register</title>
       </Helmet>
-      <div className='hero min-h-screen  '>
-        <div className='hero-content flex-col lg:flex-row lg:gap-24 gap-4  '>
-          <div className='text-center lg:text-left  '>
+      <div className='hero min-h-screen'>
+        <div className='hero-content flex-col lg:flex-row lg:gap-24 gap-4'>
+          <div className='text-center lg:text-left'>
             <img src='/logo.png' className='w-full' alt='' />
           </div>
           <div className='card shrink-0 lg:w-1/2 w-full shadow-2xl bg-base-100'>
@@ -121,7 +126,7 @@ const Register = () => {
                   </span>
                 )}
               </div>
-              <div className='form-control'>
+              <div className='form-control relative'>
                 <label className='label'>
                   <span className='label-text'>Password</span>
                 </label>
@@ -131,10 +136,19 @@ const Register = () => {
                     minLength: 6,
                     pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
                   })}
-                  type='password'
+                  type={showPassword ? "text" : "password"}
                   placeholder='Enter Your Password'
                   className='input input-bordered'
                 />
+                <div
+                  className='absolute right-3 top-[50px] cursor-pointer'
+                  onClick={() => setShowPassword(!showPassword)}>
+                  {showPassword ? (
+                    <AiOutlineEyeInvisible className='text-xl' />
+                  ) : (
+                    <AiOutlineEye className='text-xl' />
+                  )}
+                </div>
                 {errors.password?.type === "required" && (
                   <span className='mt-2 text-[12px] text-red-500'>
                     Password is required
@@ -142,16 +156,15 @@ const Register = () => {
                 )}
                 {errors.password?.type === "minLength" && (
                   <span className='mt-2 text-[12px] text-red-500'>
-                    Password must have atleast 6 character
+                    Password must have at least 6 characters
                   </span>
                 )}
                 {errors.password?.type === "pattern" && (
                   <span className='mt-2 text-[12px] text-red-500'>
-                    Password must have atleast one UpperCase letter,LowerCase
-                    letter,Number,Special character
+                    Password must have at least one uppercase letter, lowercase
+                    letter, number, and special character
                   </span>
                 )}
-                <label className='label'></label>
               </div>
               <div className='form-control mt-6'>
                 <button className='btn btn-active'>Register</button>
@@ -170,7 +183,7 @@ const Register = () => {
             </p>
             <div
               onClick={handleGoogleLogin}
-              className='flex justify-center items-center gap-4 bg-gray-600 text-white  hover:bg-white hover:text-black border border-gray-600 w-full mx-auto p-1 cursor-pointer mt-4 '>
+              className='flex justify-center items-center gap-4 bg-gray-600 text-white hover:bg-white hover:text-black border border-gray-600 w-full mx-auto p-1 cursor-pointer mt-4'>
               <h1 className='text-xl bg-white p-2'>
                 <FcGoogle />
               </h1>

@@ -2,10 +2,12 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 // import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { Helmet } from "react-helmet-async";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { AiOutlineEye } from "react-icons/ai";
+import { AiOutlineEyeInvisible } from "react-icons/ai";
 
 // const from = location.state?.from?.pathname || "/";
 console.log("state in the location:", location.state);
@@ -51,6 +53,8 @@ const Login = () => {
       });
     });
   };
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
     <div>
       <Helmet>
@@ -75,17 +79,26 @@ const Login = () => {
                   required
                 />
               </div>
-              <div className='form-control'>
+              <div className='form-control relative'>
                 <label className='label'>
                   <span className='label-text'>Password</span>
                 </label>
                 <input
                   name='password'
-                  type='password'
+                  type={showPassword ? "text" : "password"}
                   placeholder='password'
                   className='input input-bordered'
                   required
                 />
+                <div
+                  className='absolute right-3 top-[50px] cursor-pointer'
+                  onClick={() => setShowPassword(!showPassword)}>
+                  {showPassword ? (
+                    <AiOutlineEyeInvisible className='text-xl' />
+                  ) : (
+                    <AiOutlineEye className='text-xl' />
+                  )}
+                </div>
                 <label className='label'></label>
               </div>
               <div className='form-control mt-6'>

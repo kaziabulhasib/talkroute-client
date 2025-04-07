@@ -71,26 +71,6 @@ To run this project, you need to set up the following environment variables in a
 Make sure to replace the placeholders with your actual credentials.
 
 ---
-
-## Contributing
-
-We welcome contributions to improve **Talkroute**! To contribute:
-
-1. Fork the repository.
-2. Create a new branch for your feature or bug fix.
-3. Commit your changes with clear and concise messages.
-4. Push your branch and create a pull request.
-
----
-
-
-
-
-## Contact
-
-If you have any questions or feedback, feel free to reach out:
-
-- **Email**: [your-email@example.com](mailto:your-email@example.com)
-- **GitHub**: [https://github.com/kaziabulhasib](https://github.com/kaziabulhasib)
+### Note : you can check the server repo also ,  link provided at the top 
 
 ---
